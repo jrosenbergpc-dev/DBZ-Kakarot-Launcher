@@ -1,0 +1,14 @@
+﻿<Window x:Class="DBZ_Kakarot_Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBZ_Kakarot_Launcher"
+        xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+        mc:Ignorable="d"
+        Title="Dragonball Z Kakarot™ Launcher" Height="638" Width="1125" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Foreground="White" Background="{x:Null}" Loaded="Window_Loaded" AllowDrop="True">
+    <Grid>
+        <Frame x:Name="CoreFrame" Width="NaN" Height="NaN" Navigating="CoreFrame_Navigating" Navigated="CoreFrame_Navigated" NavigationUIVisibility="Hidden"/>
+        <dbzgui:CloseButton HorizontalAlignment="Right" VerticalAlignment="Top" OnClick="CloseButton_OnClick" Cursor="Hand" />
+    </Grid>
+</Window>

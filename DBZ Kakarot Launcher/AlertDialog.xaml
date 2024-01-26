@@ -1,0 +1,43 @@
+﻿<Window x:Class="DBZ_Kakarot_Launcher.AlertDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBZ_Kakarot_Launcher"
+        xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+        mc:Ignorable="d"
+        Title="Are you sure?" Height="350" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+    <Window.Effect>
+        <DropShadowEffect ShadowDepth="4" BlurRadius="10"/>
+    </Window.Effect>
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/bg.png" Stretch="Uniform"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <dbzgui:CloseButton Grid.Column="7" Grid.RowSpan="2" MinWidth="48" MinHeight="48" MaxWidth="48" MaxHeight="48" HorizontalAlignment="Right" VerticalAlignment="Top" OnClick="CloseButton_OnClick" />
+        <dbzgui:HeaderBar x:Name="Header_Lbl" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Text="" Grid.RowSpan="1" VerticalAlignment="Center" MaxHeight="40" MinHeight="40" />
+        <TextBlock x:Name="Message_Text_Block" TextWrapping="Wrap" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="6" Margin="0,10,0,0" FontFamily="Lucida Sans" FontSize="22" />
+        <dbzgui:Button x:Name="Yes_Btn" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Text="YES" OnClick="Yes_Btn_OnClick" />
+        <dbzgui:Button x:Name="No_Btn" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="3" Text="NO" OnClick="No_Btn_OnClick" />
+    </Grid>
+</Window>

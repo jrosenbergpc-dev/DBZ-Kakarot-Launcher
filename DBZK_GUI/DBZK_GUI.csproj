@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Graphics\close_button.png" />
+    <None Remove="Graphics\header_bar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBZK_Core\DBZK_Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Graphics\close_button.png" />
+    <Resource Include="Graphics\header_bar.png" />
+  </ItemGroup>
+
+</Project>

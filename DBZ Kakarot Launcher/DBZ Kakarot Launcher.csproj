@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>DBZ_Kakarot_Launcher</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Company>Singular Applications Inc.</Company>
+    <Description>A Modern Mod Launcher for Dragon Ball Z Kakarot™ PC Game</Description>
+    <Copyright>Copyright © Singular Applications Inc. 2024</Copyright>
+    <PackageProjectUrl>http://www.singularapplications.com</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\bg.png" />
+    <None Remove="Images\bg_wallpaper.png" />
+    <None Remove="Images\bg_wallpaper_lighter.png" />
+    <None Remove="Images\info_icon.png" />
+    <None Remove="Images\UAC.png" />
+    <None Remove="SDL2.dll" />
+    <None Remove="umodel.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="SDL2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="umodel.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Pictures\_BRANDING\DBZK_LAUNCHER\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBZK_Core\DBZK_Core.csproj" />
+    <ProjectReference Include="..\DBZK_GUI\DBZK_GUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\bg.png" />
+    <Resource Include="Images\bg_wallpaper.png" />
+    <Resource Include="Images\bg_wallpaper_lighter.png" />
+    <Resource Include="Images\info_icon.png" />
+    <Resource Include="Images\UAC.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

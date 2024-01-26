@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBZ Kakarot Launcher", "DBZ Kakarot Launcher\DBZ Kakarot Launcher.csproj", "{8CD135CF-61BF-43B5-AD3E-FB14F86417D5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3025F55C-1EF9-4937-85C5-9D8DAF88328E} = {3025F55C-1EF9-4937-85C5-9D8DAF88328E}
+		{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8} = {95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBZK_Core", "DBZK_Core\DBZK_Core.csproj", "{3025F55C-1EF9-4937-85C5-9D8DAF88328E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBZK_GUI", "DBZK_GUI\DBZK_GUI.csproj", "{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CD135CF-61BF-43B5-AD3E-FB14F86417D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD135CF-61BF-43B5-AD3E-FB14F86417D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD135CF-61BF-43B5-AD3E-FB14F86417D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD135CF-61BF-43B5-AD3E-FB14F86417D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3025F55C-1EF9-4937-85C5-9D8DAF88328E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3025F55C-1EF9-4937-85C5-9D8DAF88328E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3025F55C-1EF9-4937-85C5-9D8DAF88328E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3025F55C-1EF9-4937-85C5-9D8DAF88328E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FC216D-E4E4-4831-B8D1-6A8DE33BAFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1785C43-AB56-44DC-89B4-81E8266607FD}
+	EndGlobalSection
+EndGlobal

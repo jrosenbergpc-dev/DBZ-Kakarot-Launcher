@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DBZK_GUI.CloseButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DBZK_GUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="75" d:DesignWidth="75" MinWidth="75" MinHeight="75" MaxWidth="75" MaxHeight="75" MouseUp="UserControl_MouseUp">
+    <UserControl.Background>
+        <ImageBrush ImageSource="/DBZK_GUI;component/Graphics/close_button.png" Stretch="UniformToFill"/>
+    </UserControl.Background>
+    <Grid Cursor="Hand">
+            
+    </Grid>
+</UserControl>

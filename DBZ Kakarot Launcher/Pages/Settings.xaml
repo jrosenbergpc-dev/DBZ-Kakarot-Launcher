@@ -1,0 +1,54 @@
+﻿<Page x:Class="DBZ_Kakarot_Launcher.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DBZ_Kakarot_Launcher.Pages"
+      xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="638" d:DesignWidth="1125"
+      Title="Settings" Loaded="Page_Loaded">
+    <Page.Effect>
+        <DropShadowEffect BlurRadius="10" ShadowDepth="4"/>
+    </Page.Effect>
+    <Page.Background>
+        <ImageBrush ImageSource="/Images/bg.png" Stretch="UniformToFill"/>
+    </Page.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image x:Name="BG_Wallpaper" Grid.RowSpan="6" Grid.ColumnSpan="9" Margin="40,35,41,35" Opacity="0.5" Stretch="UniformToFill" />
+        <dbzgui:HeaderBar Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" Text="Settings" Grid.RowSpan="2" VerticalAlignment="Center" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="6" Margin="0,45,0,0" FontFamily="Lucida Sans" FontSize="16" Text="Game Directory Location:" Foreground="White" VerticalAlignment="Bottom" />
+        <TextBox x:Name="InstallPath_TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Top" VerticalContentAlignment="Center" FontFamily="Lucida Sans" FontSize="20" Background="{x:Null}" BorderBrush="#FFF57129" Foreground="#FFF57129" BorderThickness="4,4,4,4" Padding="0,5,0,5" >
+            <TextBox.Effect>
+                <DropShadowEffect ShadowDepth="4" BlurRadius="15" Opacity="0.9"/>
+            </TextBox.Effect>
+        </TextBox>
+        <dbzgui:Button x:Name="AutoLocateBtn" Grid.Row="2" Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Text="Auto Locate" OnClick="AutoLocateBtn_OnClick" />
+        <dbzgui:Button x:Name="BrowseBtn" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom" Text="Browse" Grid.RowSpan="1" Margin="0,0,1,0" OnClick="BrowseBtn_OnClick" />
+        <Border Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="0,15,20,60" BorderBrush="#FFB3550F" BorderThickness="3,3,3,3">
+            <Image x:Name="BGImage_Display" />
+        </Border>
+        <dbzgui:Button x:Name="SetBackgroundBtn" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Text="Set Launcher Background" OnClick="SetBackgroundBtn_OnClick" VerticalAlignment="Bottom" />
+        <dbzgui:Button x:Name="ClearBackgroundBtn" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="Clear Background" VerticalAlignment="Top" Margin="10,10,10,0" OnClick="ClearBackgroundBtn_OnClick" />
+        <dbzgui:Button x:Name="AboutBtn" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Margin="50,15,70,0" VerticalAlignment="Top" Text="About Us" OnClick="AboutBtn_OnClick" />
+        <dbzgui:Button x:Name="GoBackBtn" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Margin="50,15,70,0" VerticalAlignment="Top" Text="Go Back" OnClick="GoBackBtn_OnClick" />
+    </Grid>
+</Page>
