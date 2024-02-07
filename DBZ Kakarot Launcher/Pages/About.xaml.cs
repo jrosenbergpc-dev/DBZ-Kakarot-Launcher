@@ -1,5 +1,6 @@
 ﻿using DBZK_Core.Settings;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,5 +35,27 @@ namespace DBZ_Kakarot_Launcher.Pages
 				}
 			}
 		}
-    }
+
+		private void Button_OnClick(object sender, MouseButtonEventArgs e)
+		{
+			ProcessStartInfo xInfo = new ProcessStartInfo()
+			{
+				UseShellExecute = true,
+				FileName = "https://github.com/jrosenbergpc-dev/"
+			};
+
+			Process.Start(xInfo);
+		}
+
+		private void IGButton_OnClick(object sender, MouseButtonEventArgs e)
+		{
+			ProcessStartInfo xInfo = new ProcessStartInfo()
+			{
+				UseShellExecute = true,
+				FileName = "https://www.instagram.com/jrosenbergpcdev/"
+			};
+
+			Process.Start(xInfo);
+		}
+	}
 }

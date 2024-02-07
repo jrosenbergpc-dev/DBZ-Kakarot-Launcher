@@ -49,8 +49,8 @@
 &#x0a;x86-compatible CPU with SSE2 support
 &#x0a;OpenGL 1.1 videocard (OpenGL 2.0 is recommended)
 &#x0a;SDL 2.0 (for Linux only, windows distribution has SDL2.dll included)" Foreground="#FFFEE63B" Background="#26000000" />
-        <dbzgui:Button Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Text="GitHub Repo" />
-        <dbzgui:Button Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Instagram Profile" />
+        <dbzgui:Button Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Text="GitHub Repo" OnClick="Button_OnClick" />
+        <dbzgui:Button x:Name="IGButton" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Instagram Profile" OnClick="IGButton_OnClick" />
         <dbzgui:Button x:Name="GoBackBtn" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Margin="50,15,70,0" VerticalAlignment="Top" Text="Go Back" OnClick="GoBackBtn_OnClick" />
     </Grid>
 </Page>

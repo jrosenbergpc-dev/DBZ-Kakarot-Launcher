@@ -65,9 +65,21 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 				if (xDialog.Result == AlertDialogResult.YES)
 				{
-					MessageBox.Show("downloading: " + App.nxmLink.Replace("nxm://", "https://www.nexusmods.com/"));
-					await DownloadHandler.DownloadFile(App.nxmLink.Replace("nxm://", "https://www.nexusmods.com/"), System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-					MessageBox.Show("downloaded");
+					string modfile = await DownloadHandler.GetModFromNexus(App.nxmLink, System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
+					if (new FileHandler().FileExists(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/" + modfile) == true)
+					{
+						GetModHandler().InstallMod(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/" + modfile);
+
+						UpdateModList();
+
+						RemoveModBtn.IsEnabled = false;
+					}
+					else
+					{
+						AlertDialog xyDialog = new AlertDialog("Failed Download!", "Download Failed to Process, please try again!");
+						xyDialog.ShowDialog();
+					}
 				}
 			}
 
@@ -92,11 +104,11 @@ namespace DBZ_Kakarot_Launcher.Pages
 			fileNames.ToList().ForEach(file =>
 			{
 				GetModHandler().InstallMod(file);
-
-				UpdateModList();
-
-				RemoveModBtn.IsEnabled = false;
 			});
+
+			UpdateModList();
+
+			RemoveModBtn.IsEnabled = false;
 		}
 
 		private void OpenModFolderBtn_OnClick(object sender, MouseButtonEventArgs e)
