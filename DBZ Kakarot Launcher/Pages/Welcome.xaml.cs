@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DBZK_Core.Settings;
 using DBZK_Core.Tools;
+using Microsoft.Win32;
 
 namespace DBZ_Kakarot_Launcher.Pages
 {
@@ -68,6 +69,24 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 
 			PageFinished?.Invoke(sender, new EventArgs());
+		}
+
+		private void BrowseBtn_OnClick(object sender, MouseButtonEventArgs e)
+		{
+			using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+			{
+				dialog.ShowDialog();
+				if (dialog.SelectedPath != null)
+				{
+					if (dialog.SelectedPath != string.Empty)
+					{
+						InstallPath_TB.Text = dialog.SelectedPath;
+						DefaultConfig.InstallationPath = InstallPath_TB.Text;
+						DefaultConfig.UpdateConfigFile();
+						DefaultConfig.ReadConfigFile();
+					}
+				}
+			}
 		}
 	}
 }

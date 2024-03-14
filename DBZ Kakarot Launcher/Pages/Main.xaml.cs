@@ -73,6 +73,8 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 						UpdateModList();
 
+						new FileHandler().DeleteFile(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/" + modfile);
+
 						RemoveModBtn.IsEnabled = false;
 					}
 					else
