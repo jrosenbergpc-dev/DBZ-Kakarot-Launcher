@@ -68,8 +68,8 @@ namespace DBZ_Kakarot_Launcher
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			CoreFrame.Navigate(m_GameSelect);
-
 			return;
+
 			if (DefaultConfig.DoesConfigExist())
 			{
 				DefaultConfig.ReadConfigFile();

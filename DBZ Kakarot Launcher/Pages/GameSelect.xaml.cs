@@ -49,5 +49,25 @@ namespace DBZ_Kakarot_Launcher.Pages
 		{
 			ManageButton.Background = null;
 		}
-	}
+
+        private void LeftArrow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+			LeftArrow.Opacity = 0.5;
+        }
+
+        private void LeftArrow_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+			LeftArrow.Opacity = 1.0;
+        }
+
+        private void RightArrow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+			RightArrow.Opacity = 0.5;
+        }
+
+        private void RightArrow_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+			RightArrow.Opacity = 1.0;
+        }
+    }
 }

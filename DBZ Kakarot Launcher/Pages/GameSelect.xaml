@@ -50,18 +50,18 @@
                 </Label.Background>
             </Label>
             <Image Source="/Images/103300_sans_arrow_left_icon.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"/>
-            <Image Source="/Images/103300_sans_arrow_left_icon_white.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Margin="2,-10,-12,4" Cursor="Hand" >
+            <Image x:Name="LeftArrow" Source="/Images/103300_sans_arrow_left_icon_white.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Margin="2,-10,-12,4" Cursor="Hand" MouseDown="LeftArrow_MouseDown" MouseUp="LeftArrow_MouseUp" >
                 <Image.Effect>
                     <DropShadowEffect Color="#7FFFFFFF" BlurRadius="10" ShadowDepth="4"/>
                 </Image.Effect>
             </Image>
             <Image Grid.Row="1" Grid.Column="6" Source="/Images/103303_right_sans_arrow_icon.png" Grid.RowSpan="4" />
-            <Image Grid.Row="1" Grid.Column="6" Source="/Images/103303_right_sans_arrow_icon_white.png" Grid.RowSpan="4" Margin="7,-10,-12,-4" Cursor="Hand">
+            <Image x:Name="RightArrow" Grid.Row="1" Grid.Column="6" Source="/Images/103303_right_sans_arrow_icon_white.png" Grid.RowSpan="4" Margin="7,-10,-12,-4" Cursor="Hand" MouseDown="RightArrow_MouseDown" MouseUp="RightArrow_MouseUp">
                 <Image.Effect>
                     <DropShadowEffect Color="#7FFFFFFF" BlurRadius="10" ShadowDepth="4" Direction="180" Opacity="0.5"/>
                 </Image.Effect>
             </Image>
-            <Image Source="/Images/dragon_ball_sparking__zero_logo.png" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" />
+            <Image x:Name="GameImage" Source="/Images/dragon_ball_sparking__zero_logo.png" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" />
             <Border x:Name="LaunchButton" BorderBrush="Gray" BorderThickness="2,2,2,2" CornerRadius="25,25,25,25" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" MinHeight="50" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="15,0,15,0">
                 <Rectangle RadiusX="25" RadiusY="25" >
                     <Rectangle.Fill>

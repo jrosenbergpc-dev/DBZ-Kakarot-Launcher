@@ -1,4 +1,6 @@
 ﻿using DBZK_Core.Tools;
+using DBZK_Core.Interfaces;
+using DBZK_Core.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +8,18 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Media3D;
 
 namespace DBZK_Core.Settings
 {
 	public static class DefaultConfig
 	{
 		private static FileHandler GetFileHandler() => new FileHandler();
+		private static List<IVideoGame> Games { get; set; } = new List<IVideoGame>();
 
 		private static string ConfigFile = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\launcher.cfgset";
 
-		public static string InstallationPath { get; set; } = string.Empty;
-		public static string ModFolder { get; set; } = "\\AT\\Content\\Paks\\~mods";
-		public static string DisableFolder { get; set; } = "\\AT\\Content\\Paks\\~disabled";
 		public static string AcceptedProtocol { get; set; } = "nxm://";
-		public static double Version { get; set; } = 1.0;
+		public static double ConfigVersion { get; set; } = 2.0;
 		public static string CustomWallpaper { get; set; } = string.Empty;
 		public static bool AutoLaunchGameEnabled { get; set; } = false;
 
@@ -28,25 +27,32 @@ namespace DBZK_Core.Settings
 		{
 			if (DoesConfigExist() == false)
 			{
-				if (InstallationPath != string.Empty)
+				Games.ForEach(game =>
 				{
-					GetFileHandler().CreateFolder(InstallationPath + "\\" + ModFolder);
+                    List<string> configdata = new List<string>();
 
-					GetFileHandler().CreateFolder(InstallationPath + "\\" + DisableFolder);
+                    if (game.InstallationPath != string.Empty)
+                    {
+                        GetFileHandler().CreateFolder(game.InstallationPath + "\\" + game.ModFolder);
 
-					GetFileHandler().CreateEmptyFile(ConfigFile);
+                        GetFileHandler().CreateFolder(game.InstallationPath + "\\" + game.DisableFolder);
 
-					List<string> configdata = new List<string>();
+                        GetFileHandler().CreateEmptyFile(ConfigFile);
 
-					configdata.Add("InstallPath=" + InstallationPath);
-					configdata.Add("Version=1.0");
+						configdata.Add("[" + game.Name + "]");
+                        configdata.Add("InstallPath=" + game.InstallationPath);
+						configdata.Add("ModFolder=" + game.ModFolder);
+						configdata.Add("DisableFolder=" + game.DisableFolder);
+						configdata.Add("ModPatchRequired=" + game.ModPatchRequired.ToString());
+                        configdata.Add("Version=" + game.Version);
 
-					GetFileHandler().WriteToFile(ConfigFile, configdata);
-				}
-				else
-				{
-					//throw new Exception("No Installation Path Set!");
-				}
+                        GetFileHandler().WriteToFile(ConfigFile, configdata);
+                    }
+                    else
+                    {
+                        //throw new Exception("No Installation Path Set!");
+                    }
+                });
 			}
 			else
 			{
