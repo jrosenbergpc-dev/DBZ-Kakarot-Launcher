@@ -19,9 +19,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\103300_sans_arrow_left_icon.png" />
+    <None Remove="Images\103300_sans_arrow_left_icon_white.png" />
+    <None Remove="Images\103303_right_sans_arrow_icon.png" />
+    <None Remove="Images\103303_right_sans_arrow_icon_white.png" />
+    <None Remove="Images\abstractbg.jpg" />
+    <None Remove="Images\animatedbg.gif" />
     <None Remove="Images\bg.png" />
+    <None Remove="Images\bgvideo.mp4" />
     <None Remove="Images\bg_wallpaper.png" />
     <None Remove="Images\bg_wallpaper_lighter.png" />
+    <None Remove="Images\dragon_ball_sparking__zero_logo.png" />
     <None Remove="Images\info_icon.png" />
     <None Remove="Images\UAC.png" />
     <None Remove="SDL2.dll" />
@@ -46,19 +54,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="KsWare.XamlAnimatedGif.Wpf.StrongName" Version="1.2.2.24" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DBZK_Core\DBZK_Core.csproj" />
     <ProjectReference Include="..\DBZK_GUI\DBZK_GUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\103300_sans_arrow_left_icon.png" />
+    <Resource Include="Images\103300_sans_arrow_left_icon_white.png" />
+    <Resource Include="Images\103303_right_sans_arrow_icon.png" />
+    <Resource Include="Images\103303_right_sans_arrow_icon_white.png" />
+    <Resource Include="Images\abstractbg.jpg" />
+    <Resource Include="Images\animatedbg.gif" />
     <Resource Include="Images\bg.png" />
+    <Resource Include="Images\bgvideo.mp4" />
     <Resource Include="Images\bg_wallpaper.png" />
     <Resource Include="Images\bg_wallpaper_lighter.png" />
+    <Resource Include="Images\dragon_ball_sparking__zero_logo.png" />
     <Resource Include="Images\info_icon.png" />
     <Resource Include="Images\UAC.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\GameSelect.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -71,6 +94,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\GameSelect.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

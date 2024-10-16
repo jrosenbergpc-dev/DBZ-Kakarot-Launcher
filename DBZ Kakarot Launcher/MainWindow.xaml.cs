@@ -26,6 +26,7 @@ namespace DBZ_Kakarot_Launcher
 		private Main m_MainPage = new Main();
 		private Settings m_SettingsPage = new Settings();
 		private About m_AboutPage = new About();
+		private GameSelect m_GameSelect = new GameSelect();
 
 		public MainWindow()
 		{
@@ -66,6 +67,9 @@ namespace DBZ_Kakarot_Launcher
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			CoreFrame.Navigate(m_GameSelect);
+
+			return;
 			if (DefaultConfig.DoesConfigExist())
 			{
 				DefaultConfig.ReadConfigFile();

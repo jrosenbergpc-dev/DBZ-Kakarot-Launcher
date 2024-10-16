@@ -1,0 +1,89 @@
+﻿<Page x:Class="DBZ_Kakarot_Launcher.Pages.GameSelect"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DBZ_Kakarot_Launcher.Pages"
+      xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+      xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+      mc:Ignorable="d" 
+      d:DesignHeight="638" d:DesignWidth="1125"
+      Title="Welcome" Loaded="Page_Loaded" >
+    <Border BorderBrush="#7F145165" BorderThickness="2,2,2,2" Margin="30,30,30,30" CornerRadius="25,25,25,25">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WrapPanel Name ="container" Grid.RowSpan="6" Grid.ColumnSpan="8">
+                <Image gif:AnimationBehavior.SourceUri="/Images/animatedbg.gif" Stretch="Fill" gif:AnimationBehavior.RepeatBehavior="Forever" />
+                <WrapPanel.OpacityMask>
+                    <VisualBrush >
+                        <VisualBrush.Visual>
+                            <Border Height="{Binding ElementName=container, Path=ActualHeight}" 
+                            Width="{Binding ElementName=container, Path=ActualWidth}"
+                            Background="White" CornerRadius="25" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </WrapPanel.OpacityMask>
+            </WrapPanel>
+            <Label Content="Choose a Game!" Foreground="White" FontSize="48" Grid.ColumnSpan="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                <Label.Background>
+                    <RadialGradientBrush SpreadMethod="Pad" MappingMode="RelativeToBoundingBox" RadiusX="0.25" RadiusY="0.45" Opacity="0.75">
+                        <GradientStop Color="#19FFFFFF" Offset="0.811"/>
+                        <GradientStop Offset="1"/>
+                    </RadialGradientBrush>
+                </Label.Background>
+            </Label>
+            <Image Source="/Images/103300_sans_arrow_left_icon.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"/>
+            <Image Source="/Images/103300_sans_arrow_left_icon_white.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Margin="2,-10,-12,4" Cursor="Hand" >
+                <Image.Effect>
+                    <DropShadowEffect Color="#7FFFFFFF" BlurRadius="10" ShadowDepth="4"/>
+                </Image.Effect>
+            </Image>
+            <Image Grid.Row="1" Grid.Column="6" Source="/Images/103303_right_sans_arrow_icon.png" Grid.RowSpan="4" />
+            <Image Grid.Row="1" Grid.Column="6" Source="/Images/103303_right_sans_arrow_icon_white.png" Grid.RowSpan="4" Margin="7,-10,-12,-4" Cursor="Hand">
+                <Image.Effect>
+                    <DropShadowEffect Color="#7FFFFFFF" BlurRadius="10" ShadowDepth="4" Direction="180" Opacity="0.5"/>
+                </Image.Effect>
+            </Image>
+            <Image Source="/Images/dragon_ball_sparking__zero_logo.png" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" />
+            <Border x:Name="LaunchButton" BorderBrush="Gray" BorderThickness="2,2,2,2" CornerRadius="25,25,25,25" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" MinHeight="50" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="15,0,15,0">
+                <Rectangle RadiusX="25" RadiusY="25" >
+                    <Rectangle.Fill>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="2">
+                            <GradientStop Color="#CC000000" Offset="0.7"/>
+                            <GradientStop Color="#BF191919" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+            <Label x:Name="LaunchLbl" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Content="LAUNCH GAME" Foreground="White" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="35,0,35,0" Padding="0,14,0,14" Cursor="Hand" FontSize="16" MouseEnter="LaunchLbl_MouseEnter" MouseLeave="LaunchLbl_MouseLeave" />
+            <Border x:Name="ManageButton" BorderBrush="Gray" BorderThickness="2,2,2,2" CornerRadius="25,25,25,25" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" MinHeight="50" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="15,0,15,0">
+                <Rectangle RadiusX="25" RadiusY="25">
+                    <Rectangle.Fill>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="2">
+                            <GradientStop Color="#CC000000" Offset="0.7"/>
+                            <GradientStop Color="#BF191919" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+            <Label x:Name="ManageLbl" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" Content="MANAGE GAME/MODS" Foreground="White" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="35,0,35,0" Padding="0,14,0,14" Cursor="Hand" FontSize="16" MouseEnter="ManageLbl_MouseEnter" MouseLeave="ManageLbl_MouseLeave" />
+        </Grid>
+    </Border>
+</Page>
