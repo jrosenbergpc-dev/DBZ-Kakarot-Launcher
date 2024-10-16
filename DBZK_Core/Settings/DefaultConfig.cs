@@ -71,16 +71,81 @@ namespace DBZK_Core.Settings
 
 			configdata.ForEach(line =>
 			{
+				IVideoGame CurrentGame = null;
+
+				if (line.StartsWith("["))
+				{
+					if (line.Replace("[", "").Replace("]", "") == new DBZKakarot().Name)
+					{
+						CurrentGame = new DBZKakarot();
+					}
+					else if (line.Replace("[", "").Replace("]", "") == new DBZSparkingZero().Name)
+                    {
+                        CurrentGame = new DBZSparkingZero();
+                    }
+                }
 				if (line.StartsWith("InstallPath="))
 				{
 					string[] s_split = line.Split('=');
 
 					if (s_split.Count() > 1)
 					{
-						InstallationPath = s_split[1];
+						if (CurrentGame != null)
+						{
+							CurrentGame.InstallationPath = s_split[1];
+						}
 					}
 				}
-				else if (line.StartsWith("CustomWallpaper="))
+				else if (line.StartsWith("ModFolder="))
+                {
+                    string[] s_split = line.Split('=');
+
+                    if (s_split.Count() > 1)
+                    {
+                        if (CurrentGame != null)
+                        {
+                            CurrentGame.ModFolder = s_split[1];
+                        }
+                    }
+                }
+                else if (line.StartsWith("DisableFolder="))
+                {
+                    string[] s_split = line.Split('=');
+
+                    if (s_split.Count() > 1)
+                    {
+                        if (CurrentGame != null)
+                        {
+                            CurrentGame.DisableFolder = s_split[1];
+                        }
+                    }
+                }
+                else if (line.StartsWith("ModPatchRequired="))
+                {
+                    string[] s_split = line.Split('=');
+
+                    if (s_split.Count() > 1)
+                    {
+                        if (CurrentGame != null)
+                        {
+                            CurrentGame.ModPatchRequired = bool.Parse(s_split[1]);
+                        }
+                    }
+                }
+                else if (line.StartsWith("Version="))
+                {
+                    string[] s_split = line.Split('=');
+
+                    if (s_split.Count() > 1)
+                    {
+                        if (CurrentGame != null)
+                        {
+                            CurrentGame.Version = s_split[1];
+							Games.Add(CurrentGame); //add it here after the last property gets filled
+                        }
+                    }
+                }
+                else if (line.StartsWith("CustomWallpaper="))
 				{
 					string[] s_split = line.Split('=');
 
