@@ -29,6 +29,7 @@
     <None Remove="Images\bgvideo.mp4" />
     <None Remove="Images\bg_wallpaper.png" />
     <None Remove="Images\bg_wallpaper_lighter.png" />
+    <None Remove="Images\dbz-kakarot-logo.png" />
     <None Remove="Images\dragon_ball_sparking__zero_logo.png" />
     <None Remove="Images\info_icon.png" />
     <None Remove="Images\UAC.png" />
@@ -73,6 +74,7 @@
     <Resource Include="Images\bgvideo.mp4" />
     <Resource Include="Images\bg_wallpaper.png" />
     <Resource Include="Images\bg_wallpaper_lighter.png" />
+    <Resource Include="Images\dbz-kakarot-logo.png" />
     <Resource Include="Images\dragon_ball_sparking__zero_logo.png" />
     <Resource Include="Images\info_icon.png" />
     <Resource Include="Images\UAC.png" />

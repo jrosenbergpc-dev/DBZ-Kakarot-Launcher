@@ -35,7 +35,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void NextBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{
-			DefaultConfig.InstallationPath = InstallPath_TB.Text;
+			DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
 			DefaultConfig.SetupConfigFile();
 
 			if (InstallModLink_ChkBx.IsChecked == true)
@@ -81,7 +81,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 					if (dialog.SelectedPath != string.Empty)
 					{
 						InstallPath_TB.Text = dialog.SelectedPath;
-						DefaultConfig.InstallationPath = InstallPath_TB.Text;
+						DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
 						DefaultConfig.UpdateConfigFile();
 						DefaultConfig.ReadConfigFile();
 					}

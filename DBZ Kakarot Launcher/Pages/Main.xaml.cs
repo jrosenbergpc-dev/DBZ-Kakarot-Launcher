@@ -118,7 +118,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 			ProcessStartInfo xInfo = new ProcessStartInfo()
 			{
 				UseShellExecute = true,
-				FileName = DefaultConfig.InstallationPath + "\\" + DefaultConfig.ModFolder
+				FileName = DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder
 			};
 
 			Process.Start(xInfo);

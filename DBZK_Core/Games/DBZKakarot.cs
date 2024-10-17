@@ -10,6 +10,7 @@ namespace DBZK_Core.Games
     public class DBZKakarot : IVideoGame
     {
         public string Name { get; set; } = "Dragonball Z: Kakarot";
+        public string Logo { get; set; } = "/Images/dbz-kakarot-logo.png";
         public string InstallationPath { get; set; } = string.Empty;
         public string ModFolder { get; set; } = "\\AT\\Content\\Paks\\~mods";
         public string DisableFolder { get; set; } = "\\AT\\Content\\Paks\\~disabled";

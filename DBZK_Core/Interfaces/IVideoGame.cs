@@ -9,6 +9,7 @@ namespace DBZK_Core.Interfaces
     public interface IVideoGame
     {
         public string Name { get; set; }
+        public string Logo { get; set; }
         public string InstallationPath { get; set; }
         public string ModFolder { get; set; }
         public string DisableFolder { get; set; }

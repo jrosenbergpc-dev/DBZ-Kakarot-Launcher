@@ -1,4 +1,5 @@
 ﻿using DBZ_Kakarot_Launcher.Pages;
+using DBZK_Core.Games;
 using DBZK_Core.Settings;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,22 @@ namespace DBZ_Kakarot_Launcher
 			m_SettingsPage.UserInvokedGoBack += M_SettingsPage_UserInvokedGoBack;
 			m_SettingsPage.UserInvokedGoAbout += M_SettingsPage_UserInvokedGoAbout;
 			m_AboutPage.UserInvokedGoBack += M_AboutPage_UserInvokedGoBack;
+			m_GameSelect.LaunchWelcomeScreen += M_GameSelect_LaunchWelcomeScreen;
+		}
+
+		private void M_GameSelect_LaunchWelcomeScreen(object? sender, EventArgs e)
+		{
+			if (DefaultConfig.SelectedVideoGame != null)
+			{
+				if (DefaultConfig.SelectedVideoGame is DBZKakarot)
+				{
+					CoreFrame.Navigate(m_WelcomePage);
+				}
+				else if (DefaultConfig.SelectedVideoGame is DBZSparkingZero)
+				{
+
+				}
+			}
 		}
 
 		private void M_AboutPage_UserInvokedGoBack(object? sender, EventArgs e)

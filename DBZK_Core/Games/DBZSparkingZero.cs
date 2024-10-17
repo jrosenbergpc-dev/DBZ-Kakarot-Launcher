@@ -9,8 +9,9 @@ namespace DBZK_Core.Games
 {
     public class DBZSparkingZero : IVideoGame
     {
-        public string Name { get; set; }
-        public string InstallationPath { get; set; }
+        public string Name { get; set; } = "Dragonball Z: Sparking Zero!";
+		public string Logo { get; set; } = "/Images/dragon_ball_sparking__zero_logo.png";
+		public string InstallationPath { get; set; }
         public string ModFolder { get; set; }
         public string DisableFolder { get; set; }
         public bool ModPatchRequired { get; set; }

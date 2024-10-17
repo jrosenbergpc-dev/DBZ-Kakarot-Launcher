@@ -46,7 +46,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 		private void AutoLocateBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{
 			InstallPath_TB.Text = new FileHandler().LocateGameDirectory();
-			DefaultConfig.InstallationPath = InstallPath_TB.Text;
+			DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
 			DefaultConfig.UpdateConfigFile();
 			DefaultConfig.ReadConfigFile();
 		}
@@ -61,7 +61,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 					if (dialog.SelectedPath != string.Empty)
 					{
 						InstallPath_TB.Text = dialog.SelectedPath;
-						DefaultConfig.InstallationPath = InstallPath_TB.Text;
+						DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
 						DefaultConfig.UpdateConfigFile();
 						DefaultConfig.ReadConfigFile();
 					}
@@ -76,7 +76,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			InstallPath_TB.Text = DefaultConfig.InstallationPath;
+			InstallPath_TB.Text = DefaultConfig.SelectedVideoGame.InstallationPath;
 
 			if (DefaultConfig.CustomWallpaper != null)
 			{

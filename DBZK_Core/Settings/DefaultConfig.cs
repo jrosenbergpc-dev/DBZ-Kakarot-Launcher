@@ -14,10 +14,11 @@ namespace DBZK_Core.Settings
 	public static class DefaultConfig
 	{
 		private static FileHandler GetFileHandler() => new FileHandler();
-		private static List<IVideoGame> Games { get; set; } = new List<IVideoGame>();
 
 		private static string ConfigFile = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\launcher.cfgset";
 
+		public static List<IVideoGame> Games { get; set; } = new List<IVideoGame>();
+		public static IVideoGame? SelectedVideoGame { get; set; }
 		public static string AcceptedProtocol { get; set; } = "nxm://";
 		public static double ConfigVersion { get; set; } = 2.0;
 		public static string CustomWallpaper { get; set; } = string.Empty;
@@ -170,7 +171,16 @@ namespace DBZK_Core.Settings
 		{
 			List<string> configdata = new List<string>();
 
-			configdata.Add("InstallPath=" + InstallationPath);
+			Games.ForEach(game =>
+			{
+				configdata.Add("[" + game.Name + "]");
+				configdata.Add("InstallPath=" + game.InstallationPath);
+				configdata.Add("ModFolder=" + game.ModFolder);
+				configdata.Add("DisableFolder=" + game.DisableFolder);
+				configdata.Add("ModPatchRequired=" + game.ModPatchRequired.ToString());
+				configdata.Add("Version=" + game.Version);
+			});
+			
 			configdata.Add("CustomWallpaper=" + CustomWallpaper);
 			configdata.Add("AutoLaunch=" + AutoLaunchGameEnabled.ToString());
 			configdata.Add("Version=1.0");
