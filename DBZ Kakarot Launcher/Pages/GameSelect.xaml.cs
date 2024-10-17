@@ -69,8 +69,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void AddAllSupportedGames()
 		{
-			AvailableGames.Add(new DBZKakarot());
-			AvailableGames.Add(new DBZSparkingZero());
+			AvailableGames = GetSupportedGames();
 		}
 
 		private void AddUnConfiguredGames()
@@ -91,16 +90,18 @@ namespace DBZ_Kakarot_Launcher.Pages
 			Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
 			GameImage.Source = new BitmapImage(uriSource);
 
-			
-
 			if (string.IsNullOrEmpty(DefaultConfig.SelectedVideoGame.InstallationPath))
 			{
 				LaunchLbl.Content = "SETUP GAME";
+				ManageLbl.Foreground = new SolidColorBrush(Colors.Gray);
+				ManageLbl.IsEnabled = false;
 			}
 			else
 			{
 				LaunchLbl.Content = "LAUNCH GAME";
-			}
+                ManageLbl.Foreground = new SolidColorBrush(Colors.White);
+				ManageLbl.IsEnabled = true;
+            }
 		}
 
 		private void LaunchLbl_MouseEnter(object sender, MouseEventArgs e)

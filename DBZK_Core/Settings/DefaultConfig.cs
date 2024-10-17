@@ -28,10 +28,10 @@ namespace DBZK_Core.Settings
 		{
 			if (DoesConfigExist() == false)
 			{
-				Games.ForEach(game =>
-				{
-                    List<string> configdata = new List<string>();
+                List<string> configdata = new List<string>();
 
+                Games.ForEach(game =>
+				{
                     if (game.InstallationPath != string.Empty)
                     {
                         GetFileHandler().CreateFolder(game.InstallationPath + "\\" + game.ModFolder);
@@ -46,15 +46,15 @@ namespace DBZK_Core.Settings
 						configdata.Add("DisableFolder=" + game.DisableFolder);
 						configdata.Add("ModPatchRequired=" + game.ModPatchRequired.ToString());
                         configdata.Add("Version=" + game.Version);
-
-                        GetFileHandler().WriteToFile(ConfigFile, configdata);
                     }
                     else
                     {
                         //throw new Exception("No Installation Path Set!");
                     }
                 });
-			}
+
+                GetFileHandler().WriteToFile(ConfigFile, configdata);
+            }
 			else
 			{
 				//
