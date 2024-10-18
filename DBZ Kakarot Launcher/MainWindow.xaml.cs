@@ -33,27 +33,41 @@ namespace DBZ_Kakarot_Launcher
 		{
 			InitializeComponent();
 
+			m_WelcomePage.GameSelectClicked += M_WelcomePage_GameSelectClicked;
 			m_WelcomePage.PageFinished += WelcomePage_PageFinished;
 			m_MainPage.UserLaunchedGame += M_MainPage_UserLaunchedGame;
+			m_MainPage.GameSelectClicked += M_MainPage_GameSelectClicked;
 			m_MainPage.UserInvokedSettings += M_MainPage_UserInvokedSettings;
 			m_SettingsPage.UserInvokedGoBack += M_SettingsPage_UserInvokedGoBack;
 			m_SettingsPage.UserInvokedGoAbout += M_SettingsPage_UserInvokedGoAbout;
 			m_AboutPage.UserInvokedGoBack += M_AboutPage_UserInvokedGoBack;
 			m_GameSelect.LaunchWelcomeScreen += M_GameSelect_LaunchWelcomeScreen;
+			m_GameSelect.LaunchManageScreen += M_GameSelect_LaunchManageScreen;
+		}
+
+		private void M_MainPage_GameSelectClicked(object? sender, EventArgs e)
+		{
+			CoreFrame.Navigate(m_GameSelect);
+		}
+
+		private void M_WelcomePage_GameSelectClicked(object? sender, EventArgs e)
+		{
+			CoreFrame.Navigate(m_GameSelect);
+		}
+
+		private void M_GameSelect_LaunchManageScreen(object? sender, EventArgs e)
+		{
+			if (DefaultConfig.SelectedVideoGame != null)
+			{
+				CoreFrame.Navigate(m_MainPage);
+			}
 		}
 
 		private void M_GameSelect_LaunchWelcomeScreen(object? sender, EventArgs e)
 		{
 			if (DefaultConfig.SelectedVideoGame != null)
 			{
-				if (DefaultConfig.SelectedVideoGame is DBZKakarot)
-				{
-					CoreFrame.Navigate(m_WelcomePage);
-				}
-				else if (DefaultConfig.SelectedVideoGame is DBZSparkingZero)
-				{
-
-				}
+				CoreFrame.Navigate(m_WelcomePage);
 			}
 		}
 
@@ -84,19 +98,7 @@ namespace DBZ_Kakarot_Launcher
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			CoreFrame.Navigate(m_GameSelect);
-			return;
-
-			if (DefaultConfig.DoesConfigExist())
-			{
-				DefaultConfig.ReadConfigFile();
-
-				CoreFrame.Navigate(m_MainPage);
-			}
-			else
-			{
-				CoreFrame.Navigate(m_WelcomePage);
-			}
+			
 		}
 
 		private void CloseButton_OnClick(object sender, MouseButtonEventArgs e)
@@ -117,6 +119,11 @@ namespace DBZ_Kakarot_Launcher
 		private void WelcomePage_PageFinished(object? sender, EventArgs e)
 		{
 			CoreFrame.Navigate(m_MainPage);
+		}
+
+		private void Window_Initialized(object sender, EventArgs e)
+		{
+			CoreFrame.Navigate(m_GameSelect);
 		}
 	}
 }

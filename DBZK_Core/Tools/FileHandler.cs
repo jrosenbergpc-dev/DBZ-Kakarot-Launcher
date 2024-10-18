@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using DBZK_Core.Models;
 using DBZK_Core.Settings;
+using DBZK_Core.Games;
 
 namespace DBZK_Core.Tools
 {
@@ -100,6 +101,11 @@ namespace DBZK_Core.Tools
 			return File.Exists(path);
 		}
 
+		public bool DirectoryExists(string path)
+		{
+			return Directory.Exists(path);
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -162,18 +168,34 @@ namespace DBZK_Core.Tools
 
 			Directory.GetLogicalDrives().ToList().ForEach(drive =>
 			{
-				string gamepath = "Program Files (x86)\\Steam\\steamapps\\common\\DRAGON BALL Z KAKAROT";
-				string alt_gamepath = "SteamLibrary\\steamapps\\common\\DRAGON BALL Z KAKAROT";
-
-				if (Directory.Exists(drive + gamepath))
+				if (DefaultConfig.SelectedVideoGame is DBZKakarot)
 				{
-					gamedir = drive + gamepath;
-				}
-				else if (Directory.Exists(drive + alt_gamepath))
-				{
-					gamedir = drive + alt_gamepath;
-				}
+					string gamepath = "Program Files (x86)\\Steam\\steamapps\\common\\DRAGON BALL Z KAKAROT";
+					string alt_gamepath = "SteamLibrary\\steamapps\\common\\DRAGON BALL Z KAKAROT";
 
+					if (Directory.Exists(drive + gamepath))
+					{
+						gamedir = drive + gamepath;
+					}
+					else if (Directory.Exists(drive + alt_gamepath))
+					{
+						gamedir = drive + alt_gamepath;
+					}
+				}
+				else if (DefaultConfig.SelectedVideoGame is DBZSparkingZero)
+				{
+					string gamepath = "Program Files (x86)\\Steam\\steamapps\\common\\DRAGON BALL Sparking! ZERO";
+					string alt_gamepath = "SteamLibrary\\steamapps\\common\\DRAGON BALL Sparking! ZERO";
+
+					if (Directory.Exists(drive + gamepath))
+					{
+						gamedir = drive + gamepath;
+					}
+					else if (Directory.Exists(drive + alt_gamepath))
+					{
+						gamedir = drive + alt_gamepath;
+					}
+				}
 			});
 
 			return gamedir;

@@ -5,37 +5,59 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DBZ_Kakarot_Launcher.Pages"
       xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+      xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
       mc:Ignorable="d" 
       d:DesignHeight="638" d:DesignWidth="1125"
       Title="About" Loaded="Page_Loaded">
     <Page.Effect>
         <DropShadowEffect BlurRadius="10" ShadowDepth="4"/>
     </Page.Effect>
-    <Page.Background>
-        <ImageBrush ImageSource="/Images/bg.png" Stretch="UniformToFill"/>
-    </Page.Background>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Image x:Name="BG_Wallpaper" Grid.RowSpan="6" Grid.ColumnSpan="9" Margin="40,35,41,35" Opacity="0.5" Stretch="UniformToFill" />
-        <dbzgui:HeaderBar Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" Text="About and Mentions" Grid.RowSpan="2" VerticalAlignment="Center" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
-        <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="5" Margin="60,25,20,0" FontFamily="Lucida Sans" TextAlignment="Center" FontSize="14" Text="Thank you for downloading my new DBZ Mod Launcher! &#x0a;&#x0a;I'd like to say thanks to PurpleHeart for the original inspiration to build my own version of a mod launcher, and thanks to the admins at nexusmods for supporting my integration to their protocol allowing this mod launcher to automatically download and install mods! &#x0a;&#x0a;This little project has kinda been a little test for me and I'm very glad how it turned out! &#x0a;&#x0a;I hope you get to enjoy the full use of it as I have since I made it haha! (^_^) &#x0a;&#x0a;I'd also like to mention the following for the use of the UE Viewer Tool accessible through this launcher and packaged along side with it, please see the following credits: &#x0a;&#x0a;UE Viewer
+    <Border BorderBrush="#FFA4A4A4" BorderThickness="2,2,2,2" Margin="30,30,30,30" CornerRadius="25,25,25,25">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WrapPanel Name ="container" Grid.RowSpan="6" Grid.ColumnSpan="8">
+                <Image gif:AnimationBehavior.SourceUri="/Images/animatedbg.gif" Stretch="Fill" gif:AnimationBehavior.RepeatBehavior="Forever" />
+                <WrapPanel.OpacityMask>
+                    <VisualBrush >
+                        <VisualBrush.Visual>
+                            <Border Height="{Binding ElementName=container, Path=ActualHeight}" 
+                            Width="{Binding ElementName=container, Path=ActualWidth}"
+                            Background="White" CornerRadius="25" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </WrapPanel.OpacityMask>
+            </WrapPanel>
+            <WrapPanel Name ="bgcontainer" Grid.RowSpan="6" Grid.ColumnSpan="8">
+                <Image x:Name="BG_Wallpaper" Opacity="0.5" Stretch="UniformToFill" />
+                <WrapPanel.OpacityMask>
+                    <VisualBrush >
+                        <VisualBrush.Visual>
+                            <Border Height="{Binding ElementName=bgcontainer, Path=ActualHeight}" 
+                            Width="{Binding ElementName=bgcontainer, Path=ActualWidth}"
+                            Background="White" CornerRadius="25" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </WrapPanel.OpacityMask>
+            </WrapPanel>
+            <dbzgui:HeaderBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" Text="About and Mentions" VerticalAlignment="Top" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
+            <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="5" Margin="60,0,20,25" FontFamily="Lucida Sans" TextAlignment="Center" FontSize="14" Text="Thank you for downloading my new DBZ Mod Launcher! &#x0a;&#x0a;I'd like to say thanks to PurpleHeart for the original inspiration to build my own version of a mod launcher, and thanks to the admins at nexusmods for supporting my integration to their protocol allowing this mod launcher to automatically download and install mods! &#x0a;&#x0a;This little project has kinda been a little test for me and I'm very glad how it turned out! &#x0a;&#x0a;I hope you get to enjoy the full use of it as I have since I made it haha! (^_^) &#x0a;&#x0a;I'd also like to mention the following for the use of the UE Viewer Tool accessible through this launcher and packaged along side with it, please see the following credits: &#x0a;&#x0a;UE Viewer
 (c) Konstantin Nosov (Gildor), 2007-2020
 
 
@@ -48,9 +70,17 @@
 &#x0a;Windows or Linux operating system
 &#x0a;x86-compatible CPU with SSE2 support
 &#x0a;OpenGL 1.1 videocard (OpenGL 2.0 is recommended)
-&#x0a;SDL 2.0 (for Linux only, windows distribution has SDL2.dll included)" Foreground="#FFFEE63B" Background="#26000000" />
-        <dbzgui:Button Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Text="GitHub Repo" OnClick="Button_OnClick" />
-        <dbzgui:Button x:Name="IGButton" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Instagram Profile" OnClick="IGButton_OnClick" />
-        <dbzgui:Button x:Name="GoBackBtn" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Margin="50,15,70,0" VerticalAlignment="Top" Text="Go Back" OnClick="GoBackBtn_OnClick" />
-    </Grid>
+&#x0a;SDL 2.0 (for Linux only, windows distribution has SDL2.dll included)" Foreground="#FFD8D8D8" >
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#26000000"/>
+                        <GradientStop Color="#26FFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+            <dbzgui:Button Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Text="GitHub Repo" OnClick="Button_OnClick" />
+            <dbzgui:Button x:Name="IGButton" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Instagram Profile" OnClick="IGButton_OnClick" />
+            <dbzgui:Button x:Name="GoBackBtn" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Margin="50,15,70,0" VerticalAlignment="Top" Text="Go Back" OnClick="GoBackBtn_OnClick" />
+        </Grid>
+    </Border>
 </Page>

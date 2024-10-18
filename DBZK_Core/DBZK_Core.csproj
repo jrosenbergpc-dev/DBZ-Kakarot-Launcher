@@ -7,7 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\DBSparkingZeroModPatch.7z" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SevenZipExtractor" Version="1.0.17" />
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\DBSparkingZeroModPatch.7z" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ModPatches.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ModPatches.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ModPatches.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModPatches.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -21,11 +21,13 @@ namespace DBZ_Kakarot_Launcher.Pages
 			InitializeComponent();
 		}
 
+		public event EventHandler GameSelectClicked;
 		public event EventHandler PageFinished;
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			InstallPath_TB.Text = new FileHandler().LocateGameDirectory();
+			WelcomeText.Text = "Let's get started by locating your " + DefaultConfig.SelectedVideoGame.Name + " Game Installation!";
 		}
 
 		private void AutoLocateBtn_OnClick(object sender, MouseButtonEventArgs e)
@@ -36,7 +38,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 		private void NextBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{
 			DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
-			DefaultConfig.SetupConfigFile();
+			DefaultConfig.UpdateConfigFile();
 
 			if (InstallModLink_ChkBx.IsChecked == true)
 			{
@@ -67,6 +69,10 @@ namespace DBZ_Kakarot_Launcher.Pages
 				}
 			}
 
+			if (DefaultConfig.SelectedVideoGame.ModPatchRequired)
+			{
+				DefaultConfig.SelectedVideoGame.InstallPatch();
+			}
 
 			PageFinished?.Invoke(sender, new EventArgs());
 		}
@@ -87,6 +93,11 @@ namespace DBZ_Kakarot_Launcher.Pages
 					}
 				}
 			}
+		}
+
+		private void GoBackBtn_OnClick(object sender, MouseButtonEventArgs e)
+		{
+			GameSelectClicked?.Invoke(null, new EventArgs());
 		}
 	}
 }

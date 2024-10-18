@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="638" d:DesignWidth="1125"
       Title="Welcome" Loaded="Page_Loaded" >
-    <Border BorderBrush="#7F145165" BorderThickness="2,2,2,2" Margin="30,30,30,30" CornerRadius="25,25,25,25">
+    <Border BorderBrush="#FFA4A4A4" BorderThickness="2,2,2,2" Margin="30,30,30,30" CornerRadius="25,25,25,25">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -83,7 +83,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>
-            <Label x:Name="ManageLbl" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" Content="MANAGE GAME/MODS" Foreground="White" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="35,0,35,0" Padding="0,14,0,14" Cursor="Hand" FontSize="16" MouseEnter="ManageLbl_MouseEnter" MouseLeave="ManageLbl_MouseLeave" />
+            <Label x:Name="ManageLbl" Grid.Row="4" Grid.Column="4" Grid.RowSpan="2" Content="MANAGE GAME/MODS" Foreground="White" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="35,0,35,0" Padding="0,14,0,14" Cursor="Hand" FontSize="16" MouseEnter="ManageLbl_MouseEnter" MouseLeave="ManageLbl_MouseLeave" MouseUp="ManageLbl_MouseUp" />
         </Grid>
     </Border>
 </Page>

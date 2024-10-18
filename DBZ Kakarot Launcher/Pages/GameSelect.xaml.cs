@@ -23,8 +23,6 @@ namespace DBZ_Kakarot_Launcher.Pages
 	public partial class GameSelect : Page
 	{
 		private ModHandler GetModHandler() => new ModHandler();
-
-		private List<IVideoGame> AvailableGames = new List<IVideoGame>();
 		private int CurrentSelectionIndex = 0;
 
 		public GameSelect()
@@ -33,6 +31,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 		}
 
 		public event EventHandler LaunchWelcomeScreen;
+		public event EventHandler LaunchManageScreen;
 		public event EventHandler PageFinished;
 
 		private List<IVideoGame> GetSupportedGames()
@@ -53,39 +52,40 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void ConfigureAvailableGames()
 		{
-			if (DefaultConfig.DoesConfigExist())
+			if (DefaultConfig.Games.Count != GetSupportedGames().Count)
 			{
-				DefaultConfig.ReadConfigFile();
+				if (DefaultConfig.DoesConfigExist())
+				{
+					DefaultConfig.ReadConfigFile();
 
-				AvailableGames = DefaultConfig.Games;
-
-				AddUnConfiguredGames();
-			}
-			else
-			{
-				AddAllSupportedGames();
+					AddUnConfiguredGames();
+				}
+				else
+				{
+					AddAllSupportedGames();
+				}
 			}
 		}
 
 		private void AddAllSupportedGames()
 		{
-			AvailableGames = GetSupportedGames();
+			DefaultConfig.Games = GetSupportedGames();
 		}
 
 		private void AddUnConfiguredGames()
 		{
 			GetSupportedGames().ForEach(game =>
 			{
-				if (!AvailableGames.Any(existingGame => existingGame.GetType() == game.GetType()))
+				if (!DefaultConfig.Games.Any(existingGame => existingGame.GetType() == game.GetType()))
 				{
-					AvailableGames.Add(game);
+					DefaultConfig.Games.Add(game);
 				}
 			});
 		}
 
 		private void ChangeSlideshowImage()
 		{
-			DefaultConfig.SelectedVideoGame = AvailableGames[CurrentSelectionIndex];
+			DefaultConfig.SelectedVideoGame = DefaultConfig.Games[CurrentSelectionIndex];
 
 			Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
 			GameImage.Source = new BitmapImage(uriSource);
@@ -137,7 +137,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 			if (CurrentSelectionIndex < 0)
 			{
-				CurrentSelectionIndex = AvailableGames.Count - 1;
+				CurrentSelectionIndex = DefaultConfig.Games.Count - 1;
 			}
 
 			ChangeSlideshowImage();
@@ -154,7 +154,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 			CurrentSelectionIndex++;
 
-			if (CurrentSelectionIndex > AvailableGames.Count - 1)
+			if (CurrentSelectionIndex > DefaultConfig.Games.Count - 1)
 			{
 				CurrentSelectionIndex = 0;
 			}
@@ -171,6 +171,14 @@ namespace DBZ_Kakarot_Launcher.Pages
 			else
 			{
 				GetModHandler().LaunchGame();
+			}
+		}
+
+		private void ManageLbl_MouseUp(object sender, MouseButtonEventArgs e)
+		{
+			if (!string.IsNullOrEmpty(DefaultConfig.SelectedVideoGame.InstallationPath))
+			{
+				LaunchManageScreen?.Invoke(null, new EventArgs());
 			}
 		}
 	}

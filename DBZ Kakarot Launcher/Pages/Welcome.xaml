@@ -5,68 +5,81 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DBZ_Kakarot_Launcher.Pages"
       xmlns:dbzgui="clr-namespace:DBZK_GUI;assembly=DBZK_GUI"
+      xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
       mc:Ignorable="d" 
       d:DesignHeight="638" d:DesignWidth="1125"
       Title="Welcome" Loaded="Page_Loaded">
-    <Page.Background>
-        <ImageBrush Stretch="UniformToFill" ImageSource="/Images/bg.png"/>
-    </Page.Background>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <dbzgui:HeaderBar Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" Text="Welcome!" Grid.RowSpan="2" VerticalAlignment="Center" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="6" Margin="0,45,0,0" FontFamily="Lucida Sans" FontSize="16" Text="Let's get started by locating your Dragonball Z Kakarot™ Game Installation!" Foreground="White" />
-        <TextBox x:Name="InstallPath_TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" VerticalContentAlignment="Center" FontFamily="Lucida Sans" FontSize="20" Background="{x:Null}" BorderBrush="#FFF57129" Foreground="#FFF57129" BorderThickness="4,4,4,4" Padding="0,5,0,5" >
-            <TextBox.Effect>
-                <DropShadowEffect ShadowDepth="4" BlurRadius="15" Opacity="0.9"/>
-            </TextBox.Effect>
-        </TextBox>
-        <dbzgui:Button x:Name="AutoLocateBtn" Grid.Row="3" Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="Auto Locate" OnClick="AutoLocateBtn_OnClick" />
-        <dbzgui:Button x:Name="BrowseBtn" Grid.Row="3" Grid.Column="6" VerticalAlignment="Top" Text="Browse" Grid.RowSpan="1" Margin="0,0,1,0" OnClick="BrowseBtn_OnClick" />
-        <dbzgui:Button x:Name="NextBtn" Grid.Row="4" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="4" Margin="125,5,75,0" Text="GET STARTED" OnClick="NextBtn_OnClick" />
-        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="60,0,90,60" BorderBrush="#FFF57129" BorderThickness="3,3,3,3" CornerRadius="10,10,10,10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="Extra Options:" Foreground="White" FontFamily="Lucida Sans" FontSize="20" VerticalContentAlignment="Bottom" FontWeight="Bold" Grid.ColumnSpan="2" />
-                <Rectangle Fill="#FFF5702B" VerticalAlignment="Bottom" MinHeight="3" Grid.ColumnSpan="6" />
-                <CheckBox x:Name="InstallModLink_ChkBx" Content="Install Mod Link Support" FontFamily="Lucida Sans" FontSize="18" Foreground="#FFF57129" BorderBrush="#FFF57129" Background="{x:Null}" Padding="8,-1,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="15,10,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" />
-                <Image Source="/Images/info_icon.png" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="1" MinWidth="48" MinHeight="48" MaxWidth="48" MaxHeight="48" ToolTip="This Will Require Admin Rights; The Launcher will safely install a single registry key to allow your computer to accept the nxm:// url protocol and pass the data to this launcher so it can download and install your mod automatically!" Cursor="Help" >
-                    <Image.Effect>
-                        <DropShadowEffect/>
-                    </Image.Effect>
-                </Image>
-                <Image Source="/Images/UAC.png" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,24,0,10" />
-                <Label Content="Requires Administrative Rights!" Foreground="#FFFFD400" Grid.Row="2" Grid.RowSpan="2" Margin="72,24,0,0" Padding="0,10,0,0" Grid.Column="0" Grid.ColumnSpan="4" FontFamily="Lucida Sans" FontSize="14" />
-            </Grid>
-        </Border>
-    </Grid>
+    <Border BorderBrush="#FFA4A4A4" BorderThickness="2,2,2,2" Margin="30,30,30,30" CornerRadius="25,25,25,25">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WrapPanel Name ="container" Grid.RowSpan="6" Grid.ColumnSpan="8">
+                <Image gif:AnimationBehavior.SourceUri="/Images/animatedbg.gif" Stretch="Fill" gif:AnimationBehavior.RepeatBehavior="Forever" />
+                <WrapPanel.OpacityMask>
+                    <VisualBrush >
+                        <VisualBrush.Visual>
+                            <Border Height="{Binding ElementName=container, Path=ActualHeight}" 
+                            Width="{Binding ElementName=container, Path=ActualWidth}"
+                            Background="White" CornerRadius="25" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </WrapPanel.OpacityMask>
+            </WrapPanel>
+            <dbzgui:HeaderBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" Text="Welcome!" VerticalAlignment="Top" MaxHeight="60" MinHeight="60" />
+            <TextBlock x:Name="WelcomeText" Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="6" Margin="0,45,0,0" FontFamily="Lucida Sans" FontSize="16" Text="Let's get started by locating your Dragonball Z Kakarot™ Game Installation!" Foreground="White" HorizontalAlignment="Center" />
+            <TextBox x:Name="InstallPath_TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" VerticalContentAlignment="Center" FontFamily="Lucida Sans" FontSize="20" Background="{x:Null}" BorderBrush="Gray" Foreground="#CC5BA4DC" BorderThickness="2,2,2,2" Padding="0,5,0,5" >
+                <TextBox.Effect>
+                    <DropShadowEffect ShadowDepth="4" BlurRadius="15" Opacity="0.9"/>
+                </TextBox.Effect>
+            </TextBox>
+            <dbzgui:Button x:Name="AutoLocateBtn" Grid.Row="3" Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="Auto Locate" OnClick="AutoLocateBtn_OnClick" />
+            <dbzgui:Button x:Name="BrowseBtn" Grid.Row="3" Grid.Column="6" VerticalAlignment="Top" Text="Browse" Grid.RowSpan="1" Margin="0,0,1,0" OnClick="BrowseBtn_OnClick" />
+            <dbzgui:Button x:Name="NextBtn" Grid.Row="4" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="4" Margin="125,5,75,0" Text="GET STARTED" OnClick="NextBtn_OnClick" />
+            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="60,0,90,60" BorderBrush="Gray" BorderThickness="1,1,1,1" CornerRadius="10,10,10,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Extra Options:" Foreground="White" FontFamily="Lucida Sans" FontSize="20" VerticalContentAlignment="Bottom" FontWeight="Bold" Grid.ColumnSpan="2" />
+                    <Rectangle Fill="Gray" VerticalAlignment="Bottom" MinHeight="1" Grid.ColumnSpan="6" />
+                    <CheckBox x:Name="InstallModLink_ChkBx" Content="Install Mod Link Support" FontFamily="Lucida Sans" FontSize="18" Foreground="#FFFFD400" BorderBrush="#FFFFD400" Background="{x:Null}" Padding="8,-1,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="15,10,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+                    <Image Source="/Images/info_icon.png" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="1" MinWidth="48" MinHeight="48" MaxWidth="48" MaxHeight="48" ToolTip="This Will Require Admin Rights; The Launcher will safely install a single registry key to allow your computer to accept the nxm:// url protocol and pass the data to this launcher so it can download and install your mod automatically!" Cursor="Help" >
+                        <Image.Effect>
+                            <DropShadowEffect/>
+                        </Image.Effect>
+                    </Image>
+                    <Image Source="/Images/UAC.png" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,24,0,10" />
+                    <Label Content="Requires Administrative Rights!" Foreground="#FFFFD400" Grid.Row="2" Grid.RowSpan="2" Margin="72,24,0,0" Padding="0,10,0,0" Grid.Column="0" Grid.ColumnSpan="4" FontFamily="Lucida Sans" FontSize="14" />
+                </Grid>
+            </Border>
+            <dbzgui:Button x:Name="GoBackBtn" Grid.Column="0" Grid.ColumnSpan="2" Margin="8,4,60,0" VerticalAlignment="Top" Text="Game Select" OnClick="GoBackBtn_OnClick" Grid.Row="0" />
+        </Grid>
+    </Border>
 </Page>

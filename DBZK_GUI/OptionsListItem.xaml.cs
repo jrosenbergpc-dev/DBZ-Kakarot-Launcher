@@ -73,7 +73,7 @@ namespace DBZK_GUI
 				if (b_Selected == false)
 				{
 					BrushConverter bc = new BrushConverter();
-					this.Background = (Brush)bc.ConvertFromString("#FFB3550F");
+					this.Background = (Brush)bc.ConvertFromString("#66FFFFFF");
 					this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FFDCDCDC");
 
 					TopHighlight.Visibility = System.Windows.Visibility.Collapsed;
@@ -81,7 +81,7 @@ namespace DBZK_GUI
 				else
 				{
 					BrushConverter bc = new BrushConverter();
-					this.Background = (Brush)bc.ConvertFromString("#FFFEE63B");
+					this.Background = (Brush)bc.ConvertFromString("#CCFFFFFF");
 					this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FF8E794A");
 
 					TopHighlight.Visibility = System.Windows.Visibility.Visible;
@@ -97,7 +97,7 @@ namespace DBZK_GUI
 		private void UserControl_MouseEnter(object sender, MouseEventArgs e)
 		{
 			BrushConverter bc = new BrushConverter();
-			this.Background = (Brush)bc.ConvertFromString("#FFFEE63B");
+			this.Background = (Brush)bc.ConvertFromString("#CCFFFFFF");
 			this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FF8E794A");
 
 			TopHighlight.Visibility = System.Windows.Visibility.Visible;
@@ -108,7 +108,7 @@ namespace DBZK_GUI
 			if (IsSelected == false)
 			{
 				BrushConverter bc = new BrushConverter();
-				this.Background = (Brush)bc.ConvertFromString("#FFB3550F");
+				this.Background = (Brush)bc.ConvertFromString("#66FFFFFF");
 				this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FFDCDCDC");
 
 				TopHighlight.Visibility = System.Windows.Visibility.Collapsed;

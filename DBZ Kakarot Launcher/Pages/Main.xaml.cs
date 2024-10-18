@@ -35,6 +35,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 			m_Timer.Elapsed += M_Timer_Elapsed;
 		}
 
+		public event EventHandler GameSelectClicked;
 		public event EventHandler UserLaunchedGame;
 		public event EventHandler UserInvokedSettings;
 
@@ -46,12 +47,12 @@ namespace DBZ_Kakarot_Launcher.Pages
 			{
 				if (DefaultConfig.CustomWallpaper != String.Empty)
 				{
-					this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg_wallpaper.png")));
+					//this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg_wallpaper.png")));
 					BG_Wallpaper.Source = new BitmapImage(new Uri(DefaultConfig.CustomWallpaper));
 				}
 				else
 				{
-					this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg.png")));
+					//this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg.png")));
 					BG_Wallpaper.Source = null;
 				}
 			}
@@ -118,7 +119,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 			ProcessStartInfo xInfo = new ProcessStartInfo()
 			{
 				UseShellExecute = true,
-				FileName = DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder
+				FileName = DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder
 			};
 
 			Process.Start(xInfo);
@@ -267,6 +268,11 @@ namespace DBZ_Kakarot_Launcher.Pages
 			{
 				m_Timer.Start();
 			}
+		}
+
+		private void GoBackBtn_OnClick(object sender, MouseButtonEventArgs e)
+		{
+			GameSelectClicked?.Invoke(null, new EventArgs());
 		}
 	}
 }

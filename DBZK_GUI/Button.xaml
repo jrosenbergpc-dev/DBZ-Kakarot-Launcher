@@ -5,10 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DBZK_GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="800" Background="#FFB3550F" MouseUp="UserControl_MouseUp" Margin="10,5,10,0" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Cursor="Hand" MinHeight="40" MaxHeight="40">
-    <Grid>
-        <Rectangle x:Name="TopHighlight" VerticalAlignment="Top" MinHeight="1" MaxHeight="1" Fill="#FFFBED46" Visibility="Collapsed" />
-        <Rectangle VerticalAlignment="Bottom" MaxHeight="1" MinHeight="1" Fill="#FF8E794A" />
-        <Label x:Name="OptionLabel" FontFamily="Lucida Sans" Content="Option" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="20" FontWeight="Bold" Foreground="Gainsboro" />
-    </Grid>
+             d:DesignHeight="50" d:DesignWidth="800" MouseUp="UserControl_MouseUp" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Cursor="Hand" MinHeight="50" MaxHeight="40" Margin="0,0,0,5">
+    <Border x:Name="ButtonBG" BorderBrush="Gray" CornerRadius="25,25,25,25" BorderThickness="2,2,2,2">
+        <Grid>
+            <Rectangle RadiusX="25" RadiusY="25" >
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusX="0.5" RadiusY="2">
+                        <GradientStop Color="#CC000000" Offset="0.7"/>
+                        <GradientStop Color="#BF191919" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label x:Name="OptionLabel" FontFamily="Lucida Sans" Content="Option" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="20" FontWeight="Bold" Foreground="Gainsboro" />
+        </Grid>
+    </Border>
 </UserControl>

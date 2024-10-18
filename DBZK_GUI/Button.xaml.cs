@@ -34,25 +34,22 @@ namespace DBZK_GUI
 
 		private void UserControl_MouseUp(object sender, MouseButtonEventArgs e)
 		{
+			ButtonBG.Background = null;
 			OnClick?.Invoke(sender, e);
 		}
 
 		private void UserControl_MouseEnter(object sender, MouseEventArgs e)
 		{
 			BrushConverter bc = new BrushConverter();
-			this.Background = (Brush)bc.ConvertFromString("#FFFEE63B");
+			ButtonBG.Background = (Brush)bc.ConvertFromString("#CCFFEA00");
 			this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FF8E794A");
-
-			TopHighlight.Visibility = System.Windows.Visibility.Visible;
 		}
 
 		private void UserControl_MouseLeave(object sender, MouseEventArgs e)
 		{
 			BrushConverter bc = new BrushConverter();
-			this.Background = (Brush)bc.ConvertFromString("#FFB3550F");
+			ButtonBG.Background = null;
 			this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FFDCDCDC");
-
-			TopHighlight.Visibility = System.Windows.Visibility.Collapsed;
 		}
 	}
 }

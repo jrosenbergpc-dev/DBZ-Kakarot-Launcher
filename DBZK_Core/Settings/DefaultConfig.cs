@@ -17,6 +17,7 @@ namespace DBZK_Core.Settings
 
 		private static string ConfigFile = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\launcher.cfgset";
 
+		public static string RunningDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 		public static List<IVideoGame> Games { get; set; } = new List<IVideoGame>();
 		public static IVideoGame? SelectedVideoGame { get; set; }
 		public static string AcceptedProtocol { get; set; } = "nxm://";
@@ -32,11 +33,11 @@ namespace DBZK_Core.Settings
 
                 Games.ForEach(game =>
 				{
-                    if (game.InstallationPath != string.Empty)
+                    if (!string.IsNullOrEmpty(game.InstallationPath))
                     {
-                        GetFileHandler().CreateFolder(game.InstallationPath + "\\" + game.ModFolder);
+                        GetFileHandler().CreateFolder(game.InstallationPath + game.ModFolder);
 
-                        GetFileHandler().CreateFolder(game.InstallationPath + "\\" + game.DisableFolder);
+                        GetFileHandler().CreateFolder(game.InstallationPath + game.DisableFolder);
 
                         GetFileHandler().CreateEmptyFile(ConfigFile);
 
@@ -69,11 +70,10 @@ namespace DBZK_Core.Settings
 		public static void ReadConfigFile()
 		{
 			List<string> configdata = GetFileHandler().ReadAllContentsFromFile(ConfigFile);
+			IVideoGame CurrentGame = null;
 
 			configdata.ForEach(line =>
 			{
-				IVideoGame CurrentGame = null;
-
 				if (line.StartsWith("["))
 				{
 					if (line.Replace("[", "").Replace("]", "") == new DBZKakarot().Name)
@@ -173,6 +173,10 @@ namespace DBZK_Core.Settings
 
 			Games.ForEach(game =>
 			{
+				GetFileHandler().CreateFolder(game.InstallationPath + game.ModFolder);
+
+				GetFileHandler().CreateFolder(game.InstallationPath + game.DisableFolder);
+
 				configdata.Add("[" + game.Name + "]");
 				configdata.Add("InstallPath=" + game.InstallationPath);
 				configdata.Add("ModFolder=" + game.ModFolder);
