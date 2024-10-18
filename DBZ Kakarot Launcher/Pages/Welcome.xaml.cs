@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,6 +23,8 @@ namespace DBZ_Kakarot_Launcher.Pages
 		}
 
 		public event EventHandler GameSelectClicked;
+		public event EventHandler ModPatchInstalled;
+		public event EventHandler ModPatchFailedInstall;
 		public event EventHandler PageFinished;
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -35,7 +38,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 			InstallPath_TB.Text = new FileHandler().LocateGameDirectory();
 		}
 
-		private void NextBtn_OnClick(object sender, MouseButtonEventArgs e)
+		private async void NextBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{
 			DefaultConfig.SelectedVideoGame.InstallationPath = InstallPath_TB.Text;
 			DefaultConfig.UpdateConfigFile();
@@ -71,7 +74,15 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 			if (DefaultConfig.SelectedVideoGame.ModPatchRequired)
 			{
-				DefaultConfig.SelectedVideoGame.InstallPatch();
+				if (DefaultConfig.SelectedVideoGame.InstallPatch())
+				{
+                    ModPatchInstalled?.Invoke(this, new EventArgs());
+                }
+				else
+				{
+                    ModPatchFailedInstall?.Invoke(this, new EventArgs());
+
+                }
 			}
 
 			PageFinished?.Invoke(sender, new EventArgs());

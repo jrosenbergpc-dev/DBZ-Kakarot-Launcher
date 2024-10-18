@@ -171,7 +171,8 @@ namespace DBZ_Kakarot_Launcher.Pages
 			else
 			{
 				GetModHandler().LaunchGame();
-			}
+                PageFinished?.Invoke(null, new EventArgs());
+            }
 		}
 
 		private void ManageLbl_MouseUp(object sender, MouseButtonEventArgs e)

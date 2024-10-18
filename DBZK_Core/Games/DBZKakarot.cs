@@ -17,7 +17,7 @@ namespace DBZK_Core.Games
         public bool ModPatchRequired { get; set; } = false;
         public string Version { get; set; } = "1.0";
 
-        public void InstallPatch()
+        public bool InstallPatch()
         {
             throw new NotImplementedException();
         }

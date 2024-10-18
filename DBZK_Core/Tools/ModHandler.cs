@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO.Compression;
 using SevenZipExtractor;
+using DBZK_Core.Games;
 
 namespace DBZK_Core.Tools
 {
@@ -24,9 +25,9 @@ namespace DBZK_Core.Tools
 		/// <param name="modfile">Mod Package File</param>
 		public void InstallMod(Mod modfile)
 		{
-			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
+			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder);
 			string orig_filename = Path.GetFileName(modfile.FilePath);
-			modfile.FilePath = DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder + "\\" + orig_filename;
+			modfile.FilePath = DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder + "\\" + orig_filename;
 		}
 
 		/// <summary>
@@ -37,7 +38,7 @@ namespace DBZK_Core.Tools
 		{
 			if (Path.GetExtension(filename) == ".pak")
 			{
-				GetFileHandler().CopyFile(filename, DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
+				GetFileHandler().CopyFile(filename, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder);
 			}
 			else if (Path.GetExtension(filename) == ".zip")
 			{
@@ -55,7 +56,7 @@ namespace DBZK_Core.Tools
 				{
 					try
 					{
-						ZipFile.ExtractToDirectory(filename, DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder, true);
+						ZipFile.ExtractToDirectory(filename, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder, true);
 					}
 					catch (Exception)
 					{
@@ -83,7 +84,7 @@ namespace DBZK_Core.Tools
 					{
 						using (ArchiveFile rarfile = new ArchiveFile(filename))
 						{
-							rarfile.Extract(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder, true);
+							rarfile.Extract(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder, true);
 						}
 					}
 					catch (Exception)
@@ -113,8 +114,8 @@ namespace DBZK_Core.Tools
 		public void EnableMod(Mod modfile)
 		{
 			modfile.IsEnabled = true;
-			GetFileHandler().CopyFile(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath), DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
-			GetFileHandler().DeleteFile(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath));
+			GetFileHandler().CopyFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath), DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
+			GetFileHandler().DeleteFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath));
 		}
 
 		/// <summary>
@@ -124,7 +125,7 @@ namespace DBZK_Core.Tools
 		public void DisableMod(Mod modfile)
 		{
 			modfile.IsEnabled = false;
-			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.DisableFolder);
+			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder);
 			GetFileHandler().DeleteFile(modfile.FilePath);
 		}
 
@@ -155,9 +156,9 @@ namespace DBZK_Core.Tools
 		{
 			List<Mod> mods = new List<Mod>();
 
-			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder))
+			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder))
 			{
-				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder).ToList().ForEach(file =>
+				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder).ToList().ForEach(file =>
 				{
 					Mod newMod = new Mod()
 					{
@@ -171,9 +172,9 @@ namespace DBZK_Core.Tools
 				});
 			}
 
-			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.DisableFolder))
+			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder))
 			{
-				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.DisableFolder).ToList().ForEach(file =>
+				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder).ToList().ForEach(file =>
 				{
 					Mod newMod = new Mod()
 					{
@@ -194,18 +195,31 @@ namespace DBZK_Core.Tools
 
 		public void LaunchGame()
 		{
-			ProcessStartInfo xInfo = new ProcessStartInfo()
+			if (DefaultConfig.SelectedVideoGame is DBZKakarot)
 			{
-				UseShellExecute = true,
-				FileName = "steam://rungameid/851850"
-			};
+                ProcessStartInfo xInfo = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    FileName = "steam://rungameid/851850"
+                };
 
-			Process.Start(xInfo);
-		}
+                Process.Start(xInfo);
+            }
+			else if (DefaultConfig.SelectedVideoGame is DBZSparkingZero)
+			{
+                ProcessStartInfo xInfo = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    FileName = "steam://rungameid/1790600"
+                };
+
+                Process.Start(xInfo);
+            }
+        }
 
 		public void LaunchModViewer()
 		{
-			string arg = "-path=" + "\"" + DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder + "\"";
+			string arg = "-path=" + "\"" + DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder + "\"";
 
 			ProcessStartInfo xInfo = new ProcessStartInfo()
 			{	

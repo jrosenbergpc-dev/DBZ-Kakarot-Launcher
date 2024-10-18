@@ -34,18 +34,40 @@ namespace DBZ_Kakarot_Launcher
 			InitializeComponent();
 
 			m_WelcomePage.GameSelectClicked += M_WelcomePage_GameSelectClicked;
+            m_WelcomePage.ModPatchInstalled += M_WelcomePage_ModPatchInstalled;
+            m_WelcomePage.ModPatchFailedInstall += M_WelcomePage_ModPatchFailedInstall;
 			m_WelcomePage.PageFinished += WelcomePage_PageFinished;
+
 			m_MainPage.UserLaunchedGame += M_MainPage_UserLaunchedGame;
 			m_MainPage.GameSelectClicked += M_MainPage_GameSelectClicked;
 			m_MainPage.UserInvokedSettings += M_MainPage_UserInvokedSettings;
+
 			m_SettingsPage.UserInvokedGoBack += M_SettingsPage_UserInvokedGoBack;
 			m_SettingsPage.UserInvokedGoAbout += M_SettingsPage_UserInvokedGoAbout;
+
 			m_AboutPage.UserInvokedGoBack += M_AboutPage_UserInvokedGoBack;
+
 			m_GameSelect.LaunchWelcomeScreen += M_GameSelect_LaunchWelcomeScreen;
 			m_GameSelect.LaunchManageScreen += M_GameSelect_LaunchManageScreen;
+            m_GameSelect.PageFinished += M_GameSelect_PageFinished;
 		}
 
-		private void M_MainPage_GameSelectClicked(object? sender, EventArgs e)
+        private void M_WelcomePage_ModPatchFailedInstall(object? sender, EventArgs e)
+        {
+            MessageBox.Show("Mod Patch Failed to Install, Mods may not work correctly. If problem continues, contact jrosenbergpc@gmail.com, [Error Code #MPMW57INST]");
+        }
+
+        private void M_GameSelect_PageFinished(object? sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void M_WelcomePage_ModPatchInstalled(object? sender, EventArgs e)
+        {
+			MessageBox.Show("Mod Patch Installed Successfully!");
+        }
+
+        private void M_MainPage_GameSelectClicked(object? sender, EventArgs e)
 		{
 			CoreFrame.Navigate(m_GameSelect);
 		}

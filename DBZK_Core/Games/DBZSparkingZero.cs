@@ -23,27 +23,24 @@ namespace DBZK_Core.Games
 		public bool ModPatchRequired { get; set; } = true;
         public string Version { get; set; } = "5.1.1.0";
 
-        public void InstallPatch()
+        public bool InstallPatch()
         {
             FileHandler fileHandler = new FileHandler();
 
             if (fileHandler.DirectoryExists(InstallationPath + "\\SparkingZERO\\Binaries\\Win64"))
             {
-				var assembly = Assembly.GetExecutingAssembly();
-				string[] resourceNames = assembly.GetManifestResourceNames();
-
-				Console.WriteLine("List of embedded resources:");
-				foreach (string resourceName in resourceNames)
-				{
-					Console.WriteLine(resourceName);
-				}
-
 				WriteEmbeddedResourceToDisk("DBSparkingZeroModPatch.7z", DefaultConfig.RunningDirectory + "\\modpatch.7z");
 
 				using (ArchiveFile rarfile = new ArchiveFile(DefaultConfig.RunningDirectory + "\\modpatch.7z"))
 				{
 					rarfile.Extract(InstallationPath + "\\SparkingZERO\\Binaries\\Win64", true);
 				}
+
+				return true;
+			}
+			else
+			{
+				return false;
 			}
         }
 
@@ -53,7 +50,7 @@ namespace DBZK_Core.Games
 			Assembly assembly = Assembly.GetExecutingAssembly();
 
 			// Format the resource name as it's stored in the assembly (Namespace + File)
-			string resourceFullName = $"DBZK_Core.ModPatches.resources.{resourceName}";
+			string resourceFullName = $"DBZK_Core.{resourceName}";
 
 			// Get the resource stream
 			using (Stream resourceStream = assembly.GetManifestResourceStream(resourceFullName))

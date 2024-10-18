@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\DBSparkingZeroModPatch.7z" />
+    <None Remove="DBSparkingZeroModPatch.7z" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,22 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\DBSparkingZeroModPatch.7z" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="ModPatches.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ModPatches.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="ModPatches.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ModPatches.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="DBSparkingZeroModPatch.7z" />
   </ItemGroup>
 
 </Project>

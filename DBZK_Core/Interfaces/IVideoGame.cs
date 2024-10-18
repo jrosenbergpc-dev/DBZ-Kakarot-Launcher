@@ -16,6 +16,6 @@ namespace DBZK_Core.Interfaces
         public bool ModPatchRequired { get; set; }
         public string Version { get; set; }
 
-        public void InstallPatch();
+        public bool InstallPatch();
     }
 }

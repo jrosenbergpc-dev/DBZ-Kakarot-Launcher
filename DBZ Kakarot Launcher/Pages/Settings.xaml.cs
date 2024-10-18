@@ -38,7 +38,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 				DefaultConfig.UpdateConfigFile();
 				DefaultConfig.ReadConfigFile();
 
-				this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg_wallpaper.png")));
+				//this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg_wallpaper.png")));
 				BG_Wallpaper.Source = BGImage_Display.Source;
 			}
 		}
@@ -94,7 +94,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 			DefaultConfig.UpdateConfigFile();
 			DefaultConfig.ReadConfigFile();
 
-			this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg.png")));
+			//this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg.png")));
 			BG_Wallpaper.Source = null;
 			BGImage_Display.Source = null;
 		}
