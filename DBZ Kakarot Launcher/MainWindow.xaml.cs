@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -147,5 +148,41 @@ namespace DBZ_Kakarot_Launcher
 		{
 			CoreFrame.Navigate(m_GameSelect);
 		}
-	}
+
+        private void CloseButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+			FadeInCloseLabel();
+        }
+
+        private void CloseButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+			FadeOutCloseLbl();
+        }
+
+		private void FadeInCloseLabel()
+		{
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                From = 0.0,
+                To = 1.0,
+                Duration = new Duration(TimeSpan.FromSeconds(2)),
+                AutoReverse = false
+            };
+
+            CloseLbl.BeginAnimation(Label.OpacityProperty, animation);
+        }
+
+		private void FadeOutCloseLbl()
+		{
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                From = 1.0,
+                To = 0.0,
+                Duration = new Duration(TimeSpan.FromSeconds(1)),
+                AutoReverse = false
+            };
+
+            CloseLbl.BeginAnimation(Label.OpacityProperty, animation);
+        }
+    }
 }

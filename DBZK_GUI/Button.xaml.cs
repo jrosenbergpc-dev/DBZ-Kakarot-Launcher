@@ -42,14 +42,12 @@ namespace DBZK_GUI
 		{
 			BrushConverter bc = new BrushConverter();
 			ButtonBG.Background = (Brush)bc.ConvertFromString("#CCFFEA00");
-			this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FF8E794A");
 		}
 
 		private void UserControl_MouseLeave(object sender, MouseEventArgs e)
 		{
 			BrushConverter bc = new BrushConverter();
 			ButtonBG.Background = null;
-			this.OptionLabel.Foreground = (Brush)bc.ConvertFromString("#FFDCDCDC");
 		}
 	}
 }

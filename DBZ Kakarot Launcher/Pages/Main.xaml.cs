@@ -41,7 +41,10 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private async void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			UpdateModList();
+            Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
+            GameLogo.Source = new BitmapImage(uriSource);
+
+            UpdateModList();
 
 			if (DefaultConfig.CustomWallpaper != null)
 			{

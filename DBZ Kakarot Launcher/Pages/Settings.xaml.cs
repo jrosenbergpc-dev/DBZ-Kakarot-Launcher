@@ -76,7 +76,10 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			InstallPath_TB.Text = DefaultConfig.SelectedVideoGame.InstallationPath;
+            Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
+            GameLogo.Source = new BitmapImage(uriSource);
+
+            InstallPath_TB.Text = DefaultConfig.SelectedVideoGame.InstallationPath;
 
 			if (DefaultConfig.CustomWallpaper != null)
 			{

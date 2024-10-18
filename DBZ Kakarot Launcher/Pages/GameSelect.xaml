@@ -41,6 +41,18 @@
                     </VisualBrush>
                 </WrapPanel.OpacityMask>
             </WrapPanel>
+            <WrapPanel Name ="bgcontainer" Grid.RowSpan="6" Grid.ColumnSpan="8">
+                <Image x:Name="BG_Wallpaper" Opacity="0.5" Stretch="UniformToFill" />
+                <WrapPanel.OpacityMask>
+                    <VisualBrush >
+                        <VisualBrush.Visual>
+                            <Border Height="{Binding ElementName=bgcontainer, Path=ActualHeight}" 
+                Width="{Binding ElementName=bgcontainer, Path=ActualWidth}"
+                Background="White" CornerRadius="25" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </WrapPanel.OpacityMask>
+            </WrapPanel>
             <Label Content="Choose a Game!" Foreground="White" FontSize="48" Grid.ColumnSpan="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <Label.Background>
                     <RadialGradientBrush SpreadMethod="Pad" MappingMode="RelativeToBoundingBox" RadiusX="0.25" RadiusY="0.45" Opacity="0.75">

@@ -27,7 +27,10 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			if (DefaultConfig.CustomWallpaper != null)
+            Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
+            GameLogo.Source = new BitmapImage(uriSource);
+
+            if (DefaultConfig.CustomWallpaper != null)
 			{
 				if (DefaultConfig.CustomWallpaper != String.Empty)
 				{

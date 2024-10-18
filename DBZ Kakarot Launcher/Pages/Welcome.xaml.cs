@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using DBZK_Core.Settings;
 using DBZK_Core.Tools;
 using Microsoft.Win32;
@@ -31,7 +32,10 @@ namespace DBZ_Kakarot_Launcher.Pages
 		{
 			InstallPath_TB.Text = new FileHandler().LocateGameDirectory();
 			WelcomeText.Text = "Let's get started by locating your " + DefaultConfig.SelectedVideoGame.Name + " Game Installation!";
-		}
+
+            Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
+            GameLogo.Source = new BitmapImage(uriSource);
+        }
 
 		private void AutoLocateBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{

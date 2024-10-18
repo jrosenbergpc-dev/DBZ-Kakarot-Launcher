@@ -57,6 +57,7 @@
                 </WrapPanel.OpacityMask>
             </WrapPanel>
             <dbzgui:HeaderBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" Text="Settings" VerticalAlignment="Top" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
+            <Image x:Name="GameLogo" Grid.Column="5" Grid.ColumnSpan="3" Margin="70,0,90,35" />
             <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="6" Margin="0,45,0,0" FontFamily="Lucida Sans" FontSize="16" Text="Game Directory Location:" Foreground="White" VerticalAlignment="Bottom" />
             <TextBox x:Name="InstallPath_TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Top" VerticalContentAlignment="Center" FontFamily="Lucida Sans" FontSize="20" Background="{x:Null}" BorderBrush="Gray" Foreground="#CC5BA4DC" BorderThickness="2,2,2,2" Padding="0,5,0,5" >
                 <TextBox.Effect>

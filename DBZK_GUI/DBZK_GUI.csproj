@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Graphics\close_button.png" />
+    <None Remove="Graphics\close_button_old.png" />
     <None Remove="Graphics\header_bar.png" />
   </ItemGroup>
 
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <Resource Include="Graphics\close_button.png" />
+    <Resource Include="Graphics\close_button_old.png" />
     <Resource Include="Graphics\header_bar.png" />
   </ItemGroup>
 

@@ -9,13 +9,15 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <Company>Singular Applications Inc.</Company>
-    <Description>A Modern Mod Launcher for Dragon Ball Z Kakarot™ PC Game</Description>
+    <Description>A Modern Mod Launcher for Dragon Ball Z PC Games! Now Supporting Sparking Zero!</Description>
     <Copyright>Copyright © Singular Applications Inc. 2024</Copyright>
     <PackageProjectUrl>http://www.singularapplications.com</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/jrosenbergpc-dev/DBZ-Kakarot-Launcher</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>2.0</AssemblyVersion>
+    <FileVersion>2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

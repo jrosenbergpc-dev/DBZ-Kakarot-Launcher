@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using DBZK_Core.Games;
 using DBZK_Core.Interfaces;
@@ -46,7 +48,21 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			ConfigureAvailableGames();
+            if (DefaultConfig.CustomWallpaper != null)
+            {
+                if (DefaultConfig.CustomWallpaper != String.Empty)
+                {
+                    //this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg_wallpaper.png")));
+                    BG_Wallpaper.Source = new BitmapImage(new Uri(DefaultConfig.CustomWallpaper));
+                }
+                else
+                {
+                    //this.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/bg.png")));
+                    BG_Wallpaper.Source = null;
+                }
+            }
+
+            ConfigureAvailableGames();
 			ChangeSlideshowImage();
 		}
 
@@ -83,9 +99,9 @@ namespace DBZ_Kakarot_Launcher.Pages
 			});
 		}
 
-		private void ChangeSlideshowImage()
+		private async void ChangeSlideshowImage()
 		{
-			DefaultConfig.SelectedVideoGame = DefaultConfig.Games[CurrentSelectionIndex];
+            DefaultConfig.SelectedVideoGame = DefaultConfig.Games[CurrentSelectionIndex];
 
 			Uri uriSource = new Uri(DefaultConfig.SelectedVideoGame.Logo, UriKind.Relative);
 			GameImage.Source = new BitmapImage(uriSource);
@@ -106,13 +122,13 @@ namespace DBZ_Kakarot_Launcher.Pages
 
 		private void LaunchLbl_MouseEnter(object sender, MouseEventArgs e)
 		{
-			LaunchButton.Background = (System.Windows.Media.Brush)(new BrushConverter().ConvertFrom("#CCFFEA00"));
-		}
+            LaunchButton.Background = (System.Windows.Media.Brush)(new BrushConverter().ConvertFrom("#CCFFEA00"));
+        }
 
 		private void LaunchLbl_MouseLeave(object sender, MouseEventArgs e)
 		{
-			LaunchButton.Background = null;
-		}
+            LaunchButton.Background = null;
+        }
 
 		private void ManageLbl_MouseEnter(object sender, MouseEventArgs e)
 		{

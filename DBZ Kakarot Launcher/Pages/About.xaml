@@ -57,6 +57,7 @@
                 </WrapPanel.OpacityMask>
             </WrapPanel>
             <dbzgui:HeaderBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="1" Text="About and Mentions" VerticalAlignment="Top" MaxHeight="60" MinHeight="60" Margin="0,0,0,30" />
+            <Image x:Name="GameLogo" Grid.Column="5" Grid.ColumnSpan="3" Margin="70,0,90,35" />
             <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="5" Margin="60,0,20,25" FontFamily="Lucida Sans" TextAlignment="Center" FontSize="14" Text="Thank you for downloading my new DBZ Mod Launcher! &#x0a;&#x0a;I'd like to say thanks to PurpleHeart for the original inspiration to build my own version of a mod launcher, and thanks to the admins at nexusmods for supporting my integration to their protocol allowing this mod launcher to automatically download and install mods! &#x0a;&#x0a;This little project has kinda been a little test for me and I'm very glad how it turned out! &#x0a;&#x0a;I hope you get to enjoy the full use of it as I have since I made it haha! (^_^) &#x0a;&#x0a;I'd also like to mention the following for the use of the UE Viewer Tool accessible through this launcher and packaged along side with it, please see the following credits: &#x0a;&#x0a;UE Viewer
 (c) Konstantin Nosov (Gildor), 2007-2020
 

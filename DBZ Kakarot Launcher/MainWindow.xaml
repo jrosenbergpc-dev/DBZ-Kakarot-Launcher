@@ -9,6 +9,7 @@
         Title="Dragonball Z Kakarot™ Launcher" Height="638" Width="1125" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Foreground="White" Background="{x:Null}" Loaded="Window_Loaded" AllowDrop="True" Initialized="Window_Initialized">
     <Grid>
         <Frame x:Name="CoreFrame" Width="NaN" Height="NaN" Navigating="CoreFrame_Navigating" Navigated="CoreFrame_Navigated" NavigationUIVisibility="Hidden"/>
-        <dbzgui:CloseButton HorizontalAlignment="Right" VerticalAlignment="Top" OnClick="CloseButton_OnClick" Cursor="Hand" />
+        <Label x:Name="CloseLbl" Content="CLOSE" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,71,0" Foreground="Red" FontFamily="Eras ITC" FontSize="18" FontStyle="Italic" Opacity="0" />
+        <dbzgui:CloseButton HorizontalAlignment="Right" VerticalAlignment="Top" OnClick="CloseButton_OnClick" Cursor="Hand" MouseEnter="CloseButton_MouseEnter" MouseLeave="CloseButton_MouseLeave" />
     </Grid>
 </Window>
