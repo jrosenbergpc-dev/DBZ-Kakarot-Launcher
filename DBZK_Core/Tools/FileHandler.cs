@@ -126,12 +126,9 @@ namespace DBZK_Core.Tools
 		/// <param name="contents"></param>
 		public void WriteToFile(string path, List<string> contents)
 		{
-			if (File.Exists(path))
-			{
-				string content = String.Join(Environment.NewLine, contents.ToArray());
+			string content = String.Join(Environment.NewLine, contents.ToArray());
 
-				File.WriteAllText(path, content);
-			}
+			File.WriteAllText(path, content);
 		}
 
 		public string ReadAllContentFromFile(string path)

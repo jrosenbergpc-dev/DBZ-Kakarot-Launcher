@@ -23,12 +23,12 @@ namespace DBZK_Core.Tools
 		/// Install Mod Package to Mod Directory
 		/// </summary>
 		/// <param name="modfile">Mod Package File</param>
-		public void InstallMod(Mod modfile)
-		{
-			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder);
-			string orig_filename = Path.GetFileName(modfile.FilePath);
-			modfile.FilePath = DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder + "\\" + orig_filename;
-		}
+		//public void InstallMod(Mod modfile)
+		//{
+		//	GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder);
+		//	string orig_filename = Path.GetFileName(modfile.FilePath);
+		//	modfile.FilePath = DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder + "\\" + orig_filename;
+		//}
 
 		/// <summary>
 		/// Install Mod Package to Mod Directory from File
@@ -66,6 +66,7 @@ namespace DBZK_Core.Tools
 			else if (Path.GetExtension(filename) == ".rar")
 			{
 				bool bContainsPak = false;
+				bool bContainsModFolder = false;
 
 				using (ArchiveFile rarfile = new ArchiveFile(filename))
 				{
@@ -75,20 +76,40 @@ namespace DBZK_Core.Tools
 						{
 							bContainsPak = true;
 						}
+						if (entry.FileName.Contains("~mods"))
+						{
+							bContainsModFolder = true;
+						}
 					});
 				}
 
 				if (bContainsPak)
 				{
-					try
+					if (bContainsModFolder)
 					{
-						using (ArchiveFile rarfile = new ArchiveFile(filename))
+						try
 						{
-							rarfile.Extract(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder, true);
+							using (ArchiveFile rarfile = new ArchiveFile(filename))
+							{
+								rarfile.Extract(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder.Replace("~mods", ""), true);
+							}
+						}
+						catch (Exception)
+						{
 						}
 					}
-					catch (Exception)
+					else
 					{
+						try
+						{
+							using (ArchiveFile rarfile = new ArchiveFile(filename))
+							{
+								rarfile.Extract(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder, true);
+							}
+						}
+						catch (Exception)
+						{
+						}
 					}
 				}
 			}
@@ -104,7 +125,10 @@ namespace DBZK_Core.Tools
 		/// <param name="modfile">Mod Package File</param>
 		public void UninstallMod(Mod modfile)
 		{
-			GetFileHandler().DeleteFile(modfile.FilePath);
+			modfile.FilePaths.ForEach(file =>
+			{
+				GetFileHandler().DeleteFile(file);
+			});
 		}
 
 		/// <summary>
@@ -114,8 +138,19 @@ namespace DBZK_Core.Tools
 		public void EnableMod(Mod modfile)
 		{
 			modfile.IsEnabled = true;
-			GetFileHandler().CopyFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath), DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
-			GetFileHandler().DeleteFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(modfile.FilePath));
+
+			if (modfile.IsDirectory)
+			{
+
+			}
+			else if (modfile.IsPakFile)
+			{
+				modfile.FilePaths.ForEach(file =>
+				{
+					GetFileHandler().CopyFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(file), DefaultConfig.SelectedVideoGame.InstallationPath + "\\" + DefaultConfig.SelectedVideoGame.ModFolder);
+					GetFileHandler().DeleteFile(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\" + Path.GetFileName(file));
+				});
+			}
 		}
 
 		/// <summary>
@@ -125,31 +160,18 @@ namespace DBZK_Core.Tools
 		public void DisableMod(Mod modfile)
 		{
 			modfile.IsEnabled = false;
-			GetFileHandler().CopyFile(modfile.FilePath, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder);
-			GetFileHandler().DeleteFile(modfile.FilePath);
-		}
-
-		/// <summary>
-		/// Create Mod Package from File Path
-		/// </summary>
-		/// <param name="file">Full Path to file</param>
-		/// <returns></returns>
-		public Mod CreateMod(string file)
-		{
-			Mod? newMod = null;
-
-			if (Path.GetExtension(file) == "pak")
+			if (modfile.IsDirectory)
 			{
-				newMod = new Mod()
-				{
-					FilePath = file,
-					IsEnabled = true,
-					Name = Path.GetFileName(file),
-					Version = "1.0"
-				};
-			}
 
-			return newMod;
+			}
+			else if (modfile.IsPakFile)
+			{
+				modfile.FilePaths.ForEach(file =>
+				{
+					GetFileHandler().CopyFile(file, DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder);
+					GetFileHandler().DeleteFile(file);
+				});
+			}
 		}
 
 		public List<Mod> GetMods()
@@ -158,33 +180,101 @@ namespace DBZK_Core.Tools
 
 			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder))
 			{
-				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder).ToList().ForEach(file =>
+				Directory.GetFileSystemEntries(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder).ToList().ForEach(file =>
 				{
-					Mod newMod = new Mod()
+					if(Path.GetExtension(file) == "")
 					{
-						FilePath = file,
-						IsEnabled = true,
-						Name = Path.GetFileNameWithoutExtension(file),
-						Version = "1.0"
-					};
+						//must be a Directory!
+						Mod newMod = new Mod()
+						{
+							IsEnabled = true,
+							IsDirectory = true,
+							Name = Path.GetFileNameWithoutExtension(file),
+							Version = "1.0"
+						};
 
-					mods.Add(newMod);
+						newMod.FilePaths.Add(file);
+
+						mods.Add(newMod);
+					}
+
+					if (Path.GetExtension(file) == ".pak")
+					{
+						string PreviousPakFileName = Path.GetFileNameWithoutExtension(file);
+
+						Mod newMod = new Mod()
+						{
+							IsEnabled = true,
+							IsPakFile = true,
+							Name = Path.GetFileNameWithoutExtension(file),
+							Version = "1.0"
+						};
+
+						newMod.FilePaths.Add(file);
+
+						//search for matching ucas and utoc files!
+						List<string> search = Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder).ToList();
+
+						search.Where(xfile => Path.GetFileNameWithoutExtension(xfile) == PreviousPakFileName).ToList().ForEach(extrafile =>
+						{
+							if (Path.GetExtension(extrafile) == ".ucas" || Path.GetExtension(extrafile) == ".utoc")
+							{
+								newMod.FilePaths.Add(extrafile);
+							}
+						});
+
+						mods.Add(newMod);
+					}
 				});
 			}
 
 			if (Directory.Exists(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder))
 			{
-				Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder).ToList().ForEach(file =>
+				Directory.GetFileSystemEntries(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder).ToList().ForEach(file =>
 				{
-					Mod newMod = new Mod()
+					if (Path.GetExtension(file) == "")
 					{
-						FilePath = file,
-						IsEnabled = false,
-						Name = Path.GetFileNameWithoutExtension(file),
-						Version = "1.0"
-					};
+						//must be a Directory!
+						Mod newMod = new Mod()
+						{
+							IsEnabled = true,
+							IsDirectory = true,
+							Name = Path.GetFileNameWithoutExtension(file),
+							Version = "1.0"
+						};
 
-					mods.Add(newMod);
+						newMod.FilePaths.Add(file);
+
+						mods.Add(newMod);
+					}
+
+					if (Path.GetExtension(file) == ".pak")
+					{
+						string PreviousPakFileName = Path.GetFileNameWithoutExtension(file);
+
+						Mod newMod = new Mod()
+						{
+							IsEnabled = true,
+							IsPakFile = true,
+							Name = Path.GetFileNameWithoutExtension(file),
+							Version = "1.0"
+						};
+
+						newMod.FilePaths.Add(file);
+
+						//search for matching ucas and utoc files!
+						List<string> search = Directory.GetFiles(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder).ToList();
+
+						search.Where(xfile => Path.GetFileNameWithoutExtension(xfile) == PreviousPakFileName).ToList().ForEach(extrafile =>
+						{
+							if (Path.GetExtension(extrafile) == ".ucas" || Path.GetExtension(extrafile) == ".utoc")
+							{
+								newMod.FilePaths.Add(extrafile);
+							}
+						});
+
+						mods.Add(newMod);
+					}
 				});
 			}
 
@@ -197,32 +287,32 @@ namespace DBZK_Core.Tools
 		{
 			if (DefaultConfig.SelectedVideoGame is DBZKakarot)
 			{
-                ProcessStartInfo xInfo = new ProcessStartInfo()
-                {
-                    UseShellExecute = true,
-                    FileName = "steam://rungameid/851850"
-                };
+				ProcessStartInfo xInfo = new ProcessStartInfo()
+				{
+					UseShellExecute = true,
+					FileName = "steam://rungameid/851850"
+				};
 
-                Process.Start(xInfo);
-            }
+				Process.Start(xInfo);
+			}
 			else if (DefaultConfig.SelectedVideoGame is DBZSparkingZero)
 			{
-                ProcessStartInfo xInfo = new ProcessStartInfo()
-                {
-                    UseShellExecute = true,
-                    FileName = "steam://rungameid/1790600"
-                };
+				ProcessStartInfo xInfo = new ProcessStartInfo()
+				{
+					UseShellExecute = true,
+					FileName = "steam://rungameid/1790600"
+				};
 
-                Process.Start(xInfo);
-            }
-        }
+				Process.Start(xInfo);
+			}
+		}
 
 		public void LaunchModViewer()
 		{
 			string arg = "-path=" + "\"" + DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.ModFolder + "\"";
 
 			ProcessStartInfo xInfo = new ProcessStartInfo()
-			{	
+			{
 				FileName = "umodel.exe",
 				Arguments = arg
 			};
