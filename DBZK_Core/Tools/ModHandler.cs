@@ -238,7 +238,7 @@ namespace DBZK_Core.Tools
 						Mod newMod = new Mod()
 						{
 							IsEnabled = true,
-							IsDirectory = true,
+							IsDirectory = false,
 							Name = Path.GetFileNameWithoutExtension(file),
 							Version = "1.0"
 						};
@@ -254,7 +254,7 @@ namespace DBZK_Core.Tools
 
 						Mod newMod = new Mod()
 						{
-							IsEnabled = true,
+							IsEnabled = false,
 							IsPakFile = true,
 							Name = Path.GetFileNameWithoutExtension(file),
 							Version = "1.0"
