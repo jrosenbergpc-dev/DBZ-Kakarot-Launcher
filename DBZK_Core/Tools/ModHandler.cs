@@ -141,7 +141,10 @@ namespace DBZK_Core.Tools
 
 			if (modfile.IsDirectory)
 			{
-
+				modfile.FilePaths.ForEach(file =>
+				{
+                    //GetFileHandler().MoveDirectory(DefaultConfig.SelectedVideoGame.InstallationPath + DefaultConfig.SelectedVideoGame.DisableFolder + "\\");
+                });
 			}
 			else if (modfile.IsPakFile)
 			{

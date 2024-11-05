@@ -152,7 +152,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 		private void AddNewModBtn_OnClick(object sender, MouseButtonEventArgs e)
 		{
 			OpenFileDialog xDialog = new OpenFileDialog();
-			xDialog.Filter = "Mod Files|*.zip;*.rar;*.pak";
+			xDialog.Filter = "Mod Files|*.zip;*.rar;*.pak;*.7z";
 			xDialog.Title = "Select a Mod File";
 			xDialog.ShowDialog();
 
@@ -257,7 +257,7 @@ namespace DBZ_Kakarot_Launcher.Pages
 				Dispatcher.Invoke(new Action(() =>
 				{
 					AutoLaunchProgBar.SetPercent(100);
-					AutoLaunchLbl.Content = "Auto-Launching DBZ Kakarot™!";
+					AutoLaunchLbl.Content = "Auto-Launching!";
 				}));
 
 				GetModHandler().LaunchGame();

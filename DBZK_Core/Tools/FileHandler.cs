@@ -15,6 +15,9 @@ namespace DBZK_Core.Tools
 	{
 		private bool disposedValue;
 
+		public FileHandler() { }
+		public event EventHandler<string>? DirectoryNotFound;
+
 		/// <summary>
 		/// Copies a file from it's location to another folder location and retains it's filename along the way.
 		/// </summary>
@@ -38,6 +41,44 @@ namespace DBZK_Core.Tools
 					}
 				}
 			}
+			catch (Exception)
+			{
+			}
+		}
+
+		public void MoveDirectory(string directory, string destination)
+		{
+			try
+			{
+                // Check if the source directory exists
+                if (!Directory.Exists(directory))
+                {
+                    DirectoryNotFound?.Invoke(this, $"[Source directory not found: {directory}, From: MoveDirectory(" + directory + ", " + destination + ") @ Ln #56]");
+                }
+
+                // Create the destination directory if it doesn't exist
+                if (!Directory.Exists(destination))
+                {
+                    Directory.CreateDirectory(destination);
+                }
+
+                // Move each file in the source directory to the destination
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    string destFilePath = Path.Combine(destination, Path.GetFileName(file));
+                    File.Move(file, destFilePath);
+                }
+
+                // Recursively move subdirectories
+                foreach (string dir in Directory.GetDirectories(directory))
+                {
+                    string destSubDir = Path.Combine(destination, Path.GetFileName(dir));
+                    MoveDirectory(dir, destSubDir);
+                }
+
+                // After moving, delete the original source directory
+                Directory.Delete(directory, true);
+            }
 			catch (Exception)
 			{
 			}
